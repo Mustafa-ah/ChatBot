@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="STC.Views.NewRequestPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:STC.Behaviors"
+    xmlns:com="clr-namespace:STC.Common.CommonControlls;assembly=STC.Common"
+    xmlns:converter="clr-namespace:STC.Converters"
+    xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:rs="clr-namespace:STC.Resources"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    BackgroundColor="White"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <converter:AttachmentIconConverter x:Key="AttachmentIcon" />
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <com:BasePageContentView Lang="{Binding Lang}">
+            <com:BasePageContentView.AppConntentView>
+                <StackLayout BackgroundColor="White">
+                    <com:HeaderContentView
+                        Title="{x:Static rs:AppResources.NewRequest}"
+                        Margin="{OnPlatform Android='20',
+                                            iOS='20,30,20,30'}"
+                        FontSize="16"
+                        Lang="{Binding Lang}"
+                        LeadingImageCommand="{Binding NewRequestBackCommand}"
+                        TextColor="#242424" />
+                    <ScrollView>
+                        <StackLayout HorizontalOptions="Center"
+                            Margin="20,0,20,10"
+                            BackgroundColor="White"
+                            Spacing="10">
+                            <Label
+                                FontFamily="STCForwardRegular"
+                                FontSize="16"
+                                HorizontalOptions="CenterAndExpand"
+                                Text="{x:Static rs:AppResources.NewRequestQuote}"
+                                TextColor="#717171" />
+
+                            <ListView
+                                x:Name="AttachmentsListView"
+                                BackgroundColor="White"
+                                HasUnevenRows="True"
+                                HeightRequest="{Binding TotalHieght}"
+                                ItemsSource="{Binding Attachments}"
+                                SeparatorVisibility="None">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Frame
+                                                Margin="3"
+                                                Padding="0"
+                                                BackgroundColor="#ff375e"
+                                                CornerRadius="8"
+                                                HasShadow="False"
+                                                HeightRequest="50">
+
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="0.3*" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+
+
+                                                    <Frame
+                                                        Grid.Column="0"
+                                                        Padding="5"
+                                                        BackgroundColor="Transparent">
+                                                        <Image
+                                                            ScaleX="0.8"
+                                                            ScaleY="1"
+                                                            Source="{Binding IsImage, Converter={StaticResource Key=AttachmentIcon}}">
+
+                                                            <Image.Triggers>
+                                                                <DataTrigger
+                                                                    Binding="{Binding IsImage}"
+                                                                    TargetType="Image"
+                                                                    Value="True">
+                                                                    <Setter Property="ScaleX" Value="1" />
+                                                                    <Setter Property="ScaleY" Value="1" />
+                                                                </DataTrigger>
+                                                            </Image.Triggers>
+                                                        </Image>
+                                                    </Frame>
+
+                                                    <Frame
+                                                        Grid.Column="1"
+                                                        Padding="5"
+                                                        BackgroundColor="#F7F5F5">
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Label
+                                                                FontFamily="STCForwardRegular"
+                                                                FontSize="16"
+                                                                HorizontalOptions="StartAndExpand"
+                                                                Text="{Binding Title}"
+                                                                TextColor="#FF0059"
+                                                                VerticalOptions="CenterAndExpand" />
+
+                                                            <Image
+                                                                Margin="5"
+                                                                HeightRequest="30"
+                                                                Scale="1.1"
+                                                                Source="ic_close_gray.png">
+                                                                <Image.GestureRecognizers>
+                                                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.DeleteAttachmentCommand, Source={x:Reference AttachmentsListView}}" CommandParameter="{Binding .}" />
+                                                                </Image.GestureRecognizers>
+                                                            </Image>
+                                                        </StackLayout>
+                                                    </Frame>
+
+                                                </Grid>
+                                            </Frame>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.Behaviors>
+                                    <behaviors:DisableListItemSelectionBehavior />
+                                </ListView.Behaviors>
+                            </ListView>
+
+                            <com:EntryContentView
+                                Margin="0,5,0,5"
+                                IsVisible="{Binding IsEnabled}"
+                                Placeholder="{x:Static rs:AppResources.Title}"
+                                Value="{Binding AttachmentTitle}" />
+
+                            <Button
+                                Grid.Row="3"
+                                Margin="0,5,0,5"
+                                BackgroundColor="White"
+                                BorderColor="#FF375E"
+                                BorderWidth="2"
+                                Command="{Binding AddAttachmentCommand}"
+                                FontFamily="STCForwardMedium"
+                                FontSize="18"
+                                HeightRequest="60"
+                                IsEnabled="{Binding IsEnabled}"
+                                Text="{x:Static rs:AppResources.AddAttachment}"
+                                TextColor="#FF375E"
+                                VerticalOptions="Center" />
+
+                            <AbsoluteLayout HeightRequest="200">
+                                <maps:Map
+                                    x:Name="map"
+                                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                    AbsoluteLayout.LayoutFlags="All"
+                                    HasZoomEnabled="False"
+                                    IsShowingUser="true"
+                                    MoveToLastRegionOnLayoutChange="false" />
+                                <StackLayout
+                                    AbsoluteLayout.LayoutBounds="1,1,0.2,0.2"
+                                    AbsoluteLayout.LayoutFlags="All"
+                                    Orientation="Horizontal">
+                                    <Image
+                                        Margin="20,0,20,10"
+                                        HorizontalOptions="EndAndExpand"
+                                        Source="ic_expand"
+                                        VerticalOptions="EndAndExpand" />
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                                 <StackLayout x:Name="MyLocationStack"
+                                    AbsoluteLayout.LayoutBounds="1,0,0.2,0.2"
+                                    AbsoluteLayout.LayoutFlags="All"
+                                    Orientation="Horizontal">
+                                    <Image
+                                        Margin="20,10,20,0"
+                                        WidthRequest="20"
+                                        HeightRequest="20"
+                                        HorizontalOptions="EndAndExpand"
+                                        Source="ic_my_location"
+                                        VerticalOptions="EndAndExpand" />
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_MyLocationStack" />
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </AbsoluteLayout>
+
+                            <com:EntryContentView
+                                Margin="0,5,0,5"
+                                Placeholder="{x:Static rs:AppResources.Description}"
+                                TrailingHint="{x:Static rs:AppResources.Optional}"
+                                Value="{Binding RequestDescription}" />
+
+                            <Button
+                                Grid.Row="4"
+                                Margin="0,5,0,5"
+                                BackgroundColor="#D1D5DA"
+                                BorderColor="#D1D5DA"
+                                BorderWidth="2"
+                                Command="{Binding ContinueRequestCommand}"
+                                FontFamily="STCForwardMedium"
+                                FontSize="16"
+                                HeightRequest="60"
+                                IsEnabled="{Binding IsContinueEnabled}"
+                                Text="{x:Static rs:AppResources.Contiune}"
+                                TextColor="White"
+                                VerticalOptions="Center">
+                                <Button.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding IsContinueEnabled}"
+                                        TargetType="Button"
+                                        Value="True">
+                                        <Setter Property="IsEnabled" Value="True" />
+                                        <Setter Property="BackgroundColor" Value="#5D0095" />
+                                        <Setter Property="BorderColor" Value="#5D0095" />
+                                    </DataTrigger>
+                                </Button.Triggers>
+                            </Button>
+
+                        </StackLayout>
+
+                    </ScrollView>
+                </StackLayout>
+            </com:BasePageContentView.AppConntentView>
+
+        </com:BasePageContentView>
+    </ContentPage.Content>
+</ContentPage>

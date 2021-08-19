@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="STC.Views.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:com="clr-namespace:STC.Common.CommonControlls;assembly=STC.Common"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:rs="clr-namespace:STC.Resources"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    NavigationPage.HasNavigationBar="False">
+    <com:BasePageContentView Lang="{Binding Lang}">
+        <com:BasePageContentView.AppConntentView>
+            <AbsoluteLayout BackgroundColor="White">
+                <ScrollView
+                    Margin="20,0,20,0"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All">
+                    <StackLayout x:Name="MainStack" Spacing="30">
+
+                        <Image BackgroundColor="Yellow"
+                            x:Name="LogoImg"
+                            Margin="0,30,0,35"
+                            Aspect="AspectFit"
+                            HorizontalOptions="Start"
+                            Source="BitmapLogin.png"
+                            VerticalOptions="Center">
+                            <Image.Triggers>
+                                <DataTrigger
+                                    Binding="{Binding Lang}"
+                                    TargetType="Image"
+                                    Value="1">
+                                    <Setter Property="HorizontalOptions" Value="End" />
+                                </DataTrigger>
+
+                            </Image.Triggers>
+                        </Image>
+
+                        <StackLayout x:Name="WelcomeStack" Margin="0,0,0,10" BackgroundColor="Yellow">
+                            <Label
+                                FontFamily="STCForwardMedium"
+                                FontSize="28"
+                                Text="{x:Static rs:AppResources.Welcome}"
+                                TextColor="#171717" />
+                            <Label
+                                FontFamily="STCForwardRegular"
+                                FontSize="18"
+                                Text="{x:Static rs:AppResources.LoginStc}"
+                                TextColor="#454545" />
+                        </StackLayout>
+
+
+                        <com:EntryContentView BackgroundColor="Yellow"
+                            EntryFocused="EntryContentView_Focused"
+                            EntryUnFocused="ContentEntry_Unfocused"
+                            KeyboardType="Email"
+                            LeadingImage="ic_email_inactive"
+                            Placeholder="{x:Static rs:AppResources.EmailorPhone}"
+                            PlaceholderColor="#9f9f9f"
+                            TextChangedCommand="{Binding UserNameChangedCommand}"
+                            Value="{Binding EmailOrMobile}" />
+                        <com:EntryContentView BackgroundColor="Yellow"
+                            EntryFocused="EntryPasswordContentView_Focused"
+                            EntryUnFocused="PasswordEntry_Unfocused"
+                            IsPassword="True"
+                            LeadingImage="ic_password_inactive"
+                            Placeholder="{x:Static rs:AppResources.EnterPassword}"
+                            PlaceholderColor="#9f9f9f"
+                            TextChangedCommand="{Binding PasswordChangedCommand}"
+                            Value="{Binding Password}" />
+
+                        <Button
+                            BackgroundColor="#D1D5DA"
+                            Command="{Binding LoginCommand}"
+                            CornerRadius="2"
+                            FontFamily="STCForwardMedium"
+                            FontSize="18"
+                            HeightRequest="70"
+                            IsEnabled="{Binding isEnabled}"
+                            Text="{x:Static rs:AppResources.Contiune}"
+                            TextColor="White">
+                            <Button.Triggers>
+                                <DataTrigger
+                                    Binding="{Binding CanProceed}"
+                                    TargetType="Button"
+                                    Value="True">
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Key=CoralPinkColor}" />
+                                    <Setter Property="IsEnabled" Value="True" />
+
+                                </DataTrigger>
+                            </Button.Triggers>
+                        </Button>
+
+                        <Label BackgroundColor="Yellow"
+                            Margin="0,10,0,0"
+                            FontFamily="STCForwardRegular"
+                            FontSize="16"
+                            HorizontalOptions="Center"
+                            Text="{x:Static rs:AppResources.ForgetPassword}"
+                            TextColor="#454545">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                            </Label.GestureRecognizers>
+
+                        </Label>
+
+                        <Button
+                            BackgroundColor="White"
+                            BorderColor="#FF375E"
+                            BorderWidth="1.5"
+                            Command="{Binding OpenRegisterPageCommand}"
+                            CornerRadius="2"
+                            FontFamily="STCForwardMedium"
+                            FontSize="18"
+                            HeightRequest="70"
+                            Text="{x:Static rs:AppResources.RegisterButton}"
+                            TextColor="#FF375E" />
+                        <BoxView BackgroundColor="Transparent" HeightRequest="80" />
+                    </StackLayout>
+                </ScrollView>
+
+                <!--  forget password view  -->
+                <BoxView
+                    x:Name="DimBox"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="Black"
+                    IsVisible="False"
+                    Opacity="0.25" />
+                <StackLayout
+                    x:Name="ForgetView"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All">
+                    <BoxView BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
+                        <BoxView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_Space" />
+                        </BoxView.GestureRecognizers>
+                    </BoxView>
+                    <yummy:PancakeView
+                        x:Name="MainView"
+                        Padding="15,10,15,5"
+                        BackgroundColor="White"
+                        CornerRadius="20,20,0,0"
+                        VerticalOptions="End">
+                        <StackLayout>
+                            <BoxView
+                                BackgroundColor="LightGray"
+                                HeightRequest="6"
+                                HorizontalOptions="Center"
+                                WidthRequest="80" />
+                            <Label
+                                Margin="0,10,0,20"
+                                FontFamily="STCForwardBold"
+                                FontSize="16"
+                                HorizontalTextAlignment="Start"
+                                Text="{x:Static rs:AppResources.VerifyUsing}"
+                                TextColor="#313840"
+                                VerticalTextAlignment="Center" />
+                            <BoxView BackgroundColor="LightGray" HeightRequest="1" />
+                            <StackLayout HeightRequest="40" Orientation="Horizontal">
+                                <Label
+                                    FontFamily="STCForwardRegular"
+                                    FontSize="14"
+                                    HorizontalOptions="Start"
+                                    HorizontalTextAlignment="Start"
+                                    Text="{x:Static rs:AppResources.Email}"
+                                    TextColor="#313840"
+                                    VerticalTextAlignment="Center" />
+                                <Image
+                                    HorizontalOptions="EndAndExpand"
+                                    IsVisible="False"
+                                    Source="ic_check">
+                                    <Image.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding SelectedType}"
+                                            TargetType="Image"
+                                            Value="1">
+                                            <Setter Property="IsVisible" Value="True" />
+                                        </DataTrigger>
+                                    </Image.Triggers>
+                                </Image>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ChooseEmailCommand}" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+
+                            <BoxView BackgroundColor="LightGray" HeightRequest="1" />
+
+                            <StackLayout HeightRequest="40" Orientation="Horizontal">
+                                <Label
+                                    FontFamily="STCForwardRegular"
+                                    FontSize="14"
+                                    HorizontalOptions="Start"
+                                    HorizontalTextAlignment="Start"
+                                    Text="{x:Static rs:AppResources.PhoneNumber}"
+                                    TextColor="#313840"
+                                    VerticalTextAlignment="Center" />
+                                <Image
+                                    HorizontalOptions="EndAndExpand"
+                                    IsVisible="False"
+                                    Source="ic_check">
+                                    <Image.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding SelectedType}"
+                                            TargetType="Image"
+                                            Value="2">
+                                            <Setter Property="IsVisible" Value="True" />
+                                        </DataTrigger>
+                                    </Image.Triggers>
+                                </Image>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ChoosePhoneCommand}" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+
+                            <Button
+                                Margin="0,10,0,20"
+                                BackgroundColor="{StaticResource Key=CoralPinkColor}"
+                                Clicked="Button_Recover_Clicked"
+                                HeightRequest="40"
+                                Text="{x:Static rs:AppResources.Save}"
+                                TextColor="White" />
+                        </StackLayout>
+                    </yummy:PancakeView>
+                </StackLayout>
+            </AbsoluteLayout>
+        </com:BasePageContentView.AppConntentView>
+    </com:BasePageContentView>
+</ContentPage>

@@ -1,5 +1,6 @@
 ﻿#region Usings
 using STC.iOS.Renderers;
+using STC.Views;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
@@ -19,7 +20,18 @@ namespace STC.iOS.Renderers
             {
                 page.ModalPresentationStyle = UIModalPresentationStyle.FullScreen;
             }
-            if (this.Element is Page formsPage) formsPage.On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
+            if (this.Element is Page formsPage)
+            {
+                if (formsPage is HomePage)
+                {
+                    //ignore SetUseSafeArea
+                }
+                else
+                {
+                    formsPage.On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
+                }
+                formsPage.BackgroundColor = Color.White;// (Color)STC.App.Current.Resources["PrimaryColor"];
+            }
             base.WillMoveToParentViewController(page);
         }
         #endregion

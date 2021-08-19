@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="STC.Views.ForgetPassowrdPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:com="clr-namespace:STC.Common.CommonControlls;assembly=STC.Common"
+    xmlns:rs="clr-namespace:STC.Resources"
+    BackgroundColor="White"
+    NavigationPage.HasNavigationBar="False">
+    <com:BasePageContentView Lang="{Binding Lang}">
+        <com:BasePageContentView.AppConntentView>
+            <StackLayout BackgroundColor="White">
+                <com:HeaderContentView
+                    Margin="20,30,20,0"
+                    Lang="{Binding Lang}"
+                    LeadingImageCommand="{Binding BackCommand}" />
+                <ScrollView Margin="20,0,20,0" VerticalOptions="FillAndExpand">
+
+                    <StackLayout Spacing="40" x:Name="MainStack">
+                        <Label
+                            x:Name="lblTitle"
+                            FontFamily="STCForwardMedium"
+                            FontSize="28"
+                            Text="{x:Static rs:AppResources.ForgetPassowordMultiLine}"
+                            TextColor="#171717" />
+                        <Label
+                            x:Name="lblCaption"
+                            FontFamily="STCForwardRegular"
+                            FontSize="18"
+                            Text="{x:Static rs:AppResources.YouCanChange}"
+                            TextColor="#454545" />
+                        <StackLayout Spacing="30" VerticalOptions="Center">
+                            <com:EntryContentView
+                                Margin="0,100,0,0"
+                                x:Name="txtContent"
+                                EntryFocused="EntryContentView_Focused"
+                                EntryUnFocused="ContentEntry_Unfocused"
+                                Placeholder="{Binding SelectedVerify}"
+                                PlaceholderColor="#7E7C7C"
+                                Value="{Binding ForgetPassword}">
+                                <com:EntryContentView.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding VerifyType}"
+                                        TargetType="com:EntryContentView"
+                                        Value="2">
+                                        <Setter Property="KeyboardType" Value="Numeric" />
+                                    </DataTrigger>
+                                </com:EntryContentView.Triggers>
+                            </com:EntryContentView>
+
+                        </StackLayout>
+                        <Button
+                            BackgroundColor="#FF375E"
+                            BorderColor="White"
+                            BorderWidth="2"
+                            Command="{Binding OpenVerifyEmailPageCommand}"
+                            CommandParameter="ForgetPassword"
+                            FontFamily="STCForwardMedium"
+                            FontSize="18"
+                            HeightRequest="70"
+                            Text="{x:Static rs:AppResources.SendCode}"
+                            TextColor="#FFFFFF"
+                            VerticalOptions="Center" />
+                        <Button
+                            x:Name="lgnBtn"
+                            Margin="0,50,0,0"
+                            BackgroundColor="White"
+                            BorderColor="#B7B7B7"
+                            BorderWidth="2"
+                            Command="{Binding BackLoginCommand}"
+                            FontFamily="STCForwardMedium"
+                            FontSize="18"
+                            HeightRequest="70"
+                            Text="{x:Static rs:AppResources.BackToLogin}"
+                            TextColor="#A3A3A3"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+
+
+                </ScrollView>
+
+            </StackLayout>
+
+        </com:BasePageContentView.AppConntentView>
+    </com:BasePageContentView>
+</ContentPage>

@@ -1,21 +1,30 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="STC.App">
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<prism:PrismApplication
+    x:Class="STC.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms">
     <Application.Resources>
         <ResourceDictionary>
-            <!--Global Styles-->
+            <!--  Global Styles  -->
             <Color x:Key="NavigationPrimary">#2196F3</Color>
             <Color x:Key="DimmedBackgroundColor">#80000000</Color>
             <Color x:Key="LoadingLabelColor">#FF394C</Color>
             <Color x:Key="LoadingSpinnerColor">#FF394C</Color>
             <Color x:Key="LinkColor">#0070C0</Color>
             <Color x:Key="SpinnerBackgroundColor">#D0000000</Color>
+            <Color x:Key="TabActiveFontColor">#4A0089</Color>
+            <Color x:Key="TabFontColor">#8E9AA0</Color>
+            <Color x:Key="ActiveControllColor">#5D0095</Color>
+            <Color x:Key="InActiveControllColor">#CACACA</Color>
+            <Color x:Key="HomeTabsBackgroundColor">#5D0095</Color>
+            <Color x:Key="CoralPinkColor">#FF375E</Color>
+            <Color x:Key="PrimaryColor">#53008f</Color>
 
-            <Style TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+            <!--<Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryColor}" />
                 <Setter Property="BarTextColor" Value="White" />
-            </Style>
+            </Style>-->
         </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>

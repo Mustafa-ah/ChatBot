@@ -3,10 +3,9 @@
   <item>
     <color android:color="@color/splash_background"/>
   </item>
-  <item>
-    <bitmap
-        android:src="@drawable/splash_screen"
-        android:tileMode="disabled"
-        android:gravity="fill"/>
-  </item>
+  <item
+    android:width="144dp"
+    android:height="72dp"
+    android:drawable="@drawable/stc_logo_light"
+    android:gravity="center" />
 </layer-list>

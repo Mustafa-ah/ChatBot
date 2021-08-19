@@ -1,25 +1,749 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-    <resheader name="resmimetype">
-        <value>text/microsoft-resx</value>
-    </resheader>
-    <resheader name="version">
-        <value>2.0</value>
-    </resheader>
-    <resheader name="reader">
-        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-    </resheader>
-    <resheader name="writer">
-        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-    </resheader>
+  <!-- 
+    Microsoft ResX Schema 
     
-        <data name="NotesLabel" xml:space="preserve">
-        <value>ملاحظات</value>
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
     </data>
-    <data name="NotesPlaceholder" xml:space="preserve">
-        <value>ار ملان كتسر</value>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
     </data>
-    <data name="AddButton" xml:space="preserve">
-        <value>اضاقه</value>
-    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="NotesLabel" xml:space="preserve">
+    <value>ملاحظات</value>
+  </data>
+  <data name="NotesPlaceholder" xml:space="preserve">
+    <value>ار ملان كتسر</value>
+  </data>
+  <data name="AddButton" xml:space="preserve">
+    <value>إضاقه</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>الصفحة الرئيسية</value>
+  </data>
+  <data name="Inquiries" xml:space="preserve">
+    <value>الإستفسارات</value>
+  </data>
+  <data name="Requests" xml:space="preserve">
+    <value>الطلبات</value>
+  </data>
+  <data name="Faq" xml:space="preserve">
+    <value>الاسئلة الشائعة</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>اغلاق</value>
+  </data>
+  <data name="DidntFindQuestion" xml:space="preserve">
+    <value>اذا لم تجد سؤالك </value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>البريد الالكتروني</value>
+  </data>
+  <data name="Hotline" xml:space="preserve">
+    <value>الخط الساخن </value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>رقم الجوال</value>
+  </data>
+  <data name="RequestSent" xml:space="preserve">
+    <value>تم ارسال طلبك  تهانينا</value>
+  </data>
+  <data name="SearchKeyword" xml:space="preserve">
+    <value>البحث باستخدام كلمات دالة</value>
+  </data>
+  <data name="WaitingApproval" xml:space="preserve">
+    <value>طلبك قيد الانتظار للموافقة </value>
+  </data>
+  <data name="DismissAll" xml:space="preserve">
+    <value>إلغاء الكل </value>
+  </data>
+  <data name="NewRequest" xml:space="preserve">
+    <value>طلب جديد</value>
+  </data>
+  <data name="RecentNotifications" xml:space="preserve">
+    <value>آخر الإشعارات</value>
+  </data>
+  <data name="ViewDetails" xml:space="preserve">
+    <value>عرض التفاصيل</value>
+  </data>
+  <data name="YourRequests" xml:space="preserve">
+    <value>طلباتك</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>مرحبا</value>
+  </data>
+  <data name="LoginStc" xml:space="preserve">
+    <value>الدخول الي STC </value>
+  </data>
+  <data name="Contiune" xml:space="preserve">
+    <value>المتابعة</value>
+  </data>
+  <data name="EnterEmail" xml:space="preserve">
+    <value>البريد الالكتروني</value>
+  </data>
+  <data name="EnterPassword" xml:space="preserve">
+    <value>كلمة المرور</value>
+  </data>
+  <data name="ForgetPassword" xml:space="preserve">
+    <value>هل نسيت كلمة المرور؟</value>
+  </data>
+  <data name="RegisterButton" xml:space="preserve">
+    <value>تسجيل هنا</value>
+  </data>
+  <data name="ConfirmEmailAndSms" xml:space="preserve">
+    <value>للبدء يرجى تأكيد
+
+بريدك الإلكتروني ورمز الرسائل القصيرة.</value>
+  </data>
+  <data name="VerifyAccount" xml:space="preserve">
+    <value>تحقق من حسابك</value>
+  </data>
+  <data name="RegisterQuote" xml:space="preserve">
+    <value>كل المعلومات مشفرة ...
+
+أنت بأمان مع stc.</value>
+  </data>
+  <data name="RegisterNow" xml:space="preserve">
+    <value>تسجيل الآن</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>الإسم بالكامل</value>
+  </data>
+  <data name="phone number" xml:space="preserve">
+    <value>رقم الجوال</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>رقم الجوال</value>
+  </data>
+  <data name="CheckFaq" xml:space="preserve">
+    <value>البحث في الاسئلة المكررة</value>
+  </data>
+  <data name="InquiriesTabQuote" xml:space="preserve">
+    <value>اذا لم تجد سؤالك</value>
+  </data>
+  <data name="Inquiry" xml:space="preserve">
+    <value>الإستفسارات</value>
+  </data>
+  <data name="NewInquiry" xml:space="preserve">
+    <value>تساؤل جديد</value>
+  </data>
+  <data name="RequestsTabQuote" xml:space="preserve">
+    <value>تعاقد الان مع STC</value>
+  </data>
+  <data name="SeeYourInquiries" xml:space="preserve">
+    <value>عرض الإستفسارات</value>
+  </data>
+  <data name="SeeYourRequests" xml:space="preserve">
+    <value>عرض طلباتك</value>
+  </data>
+  <data name="GoodEvening" xml:space="preserve">
+    <value>مساء الخير,</value>
+  </data>
+  <data name="GoodMorning" xml:space="preserve">
+    <value>صباح الخير,</value>
+  </data>
+  <data name="HowCanHelp" xml:space="preserve">
+    <value>كيف نقوم بمساعدتك؟</value>
+  </data>
+  <data name="InquiriesHomeQuote" xml:space="preserve">
+    <value>اذا لم تستطع الحصول علي اسئلتك في الاسئلة الشائعة </value>
+  </data>
+  <data name="RequestHomeQuote" xml:space="preserve">
+    <value>أرسل طلبك
+وقع  بأسهل طريقة.</value>
+  </data>
+  <data name="BackToLogin" xml:space="preserve">
+    <value>العودة الي تسجيل الدخول</value>
+  </data>
+  <data name="EmailorPhone" xml:space="preserve">
+    <value>البريد الالكتروني او الجوال</value>
+  </data>
+  <data name="ForgetPassowordMultiLine" xml:space="preserve">
+    <value>هل نسيت 
+كلمة السر؟  </value>
+  </data>
+  <data name="SendCode" xml:space="preserve">
+    <value>ارسال الكود</value>
+  </data>
+  <data name="YouCanChange" xml:space="preserve">
+    <value>انت تستطيع تغيير</value>
+  </data>
+  <data name="EnterCode" xml:space="preserve">
+    <value>يرجى إدخال الرقم السري المؤقت الذي تم إرساله ل</value>
+  </data>
+  <data name="EnterCodeMobile" xml:space="preserve">
+    <value>يرجى إدخال الرقم السري المؤقت الذي تم إرساله لرقم الجوال</value>
+  </data>
+  <data name="EnterCodeEmail" xml:space="preserve">
+    <value>يرجى إدخال الرقم السري المؤقت الذي تم إرساله للبريد الالكتروني</value>
+  </data>
+  <data name="VerifySMSQuote" xml:space="preserve">
+    <value>من فضلك أدخل الرقم السري المرسل إلى</value>
+  </data>
+  <data name="WrongNumber" xml:space="preserve">
+    <value>الرقم خاطئ؟ </value>
+  </data>
+  <data name="DidntReceiveCode" xml:space="preserve">
+    <value>لم تحصل على الرقم السري المؤقت؟</value>
+  </data>
+  <data name="SendAgain" xml:space="preserve">
+    <value>ارسل مجددا</value>
+  </data>
+  <data name="SMSCode" xml:space="preserve">
+    <value>الرمز المرسل في رسالة نصية</value>
+  </data>
+  <data name="AddAttachment" xml:space="preserve">
+    <value>إضافة مرفق</value>
+  </data>
+  <data name="ChooseTheFilesRequired" xml:space="preserve">
+    <value>اختر الملفات المطلوبة</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>الوصف</value>
+  </data>
+  <data name="NewRequestQuote" xml:space="preserve">
+    <value>يمكنك إرفاق ملفات بحد اقصي 8 ملفات</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>العنوان</value>
+  </data>
+  <data name="UploadFile" xml:space="preserve">
+    <value>قم بتحميل ملفك</value>
+  </data>
+  <data name="NumberAttachmentsValidation" xml:space="preserve">
+    <value> أقصي عدد ملفات مسموح به لطلب واحد هو ٨</value>
+  </data>
+  <data name="ExtensionValidation" xml:space="preserve">
+    <value>الإمتداد غير مدعوم</value>
+  </data>
+  <data name="SizeValidation" xml:space="preserve">
+    <value>حجم الملف لا ينبغي ان يزيد عن 2 ميغا بايت</value>
+  </data>
+  <data name="download" xml:space="preserve">
+    <value>تحميل</value>
+  </data>
+  <data name="SlideTo" xml:space="preserve">
+    <value>اسحب لكي يتم الرفع الان</value>
+  </data>
+  <data name="TermsConditions" xml:space="preserve">
+    <value>الشروط والأحكام</value>
+  </data>
+  <data name="UploadNow" xml:space="preserve">
+    <value>ترفع الملفات الان</value>
+  </data>
+  <data name="view" xml:space="preserve">
+    <value>مشاهدة</value>
+  </data>
+  <data name="WhenYouSlideAccept" xml:space="preserve">
+    <value>إسحب للموافقة على</value>
+  </data>
+  <data name="YourSignature" xml:space="preserve">
+    <value>إمضائك</value>
+  </data>
+  <data name="AboutUs" xml:space="preserve">
+    <value>عن STC</value>
+  </data>
+  <data name="AboutUs1" xml:space="preserve">
+    <value>نحن نقدم مجموعة متنوعة من حلول تكنولوجيا المعلومات والاتصالات والخدمات الرقمية في عدة فئات بما في ذلك الاتصالات وتكنولوجيا المعلومات والتكنولوجيا المالية والوسائط الرقمية والأمن السيبراني والحلول الرقمية المتقدمة الأخرى ، حيث نقود التحول الرقمي على الصعيدين الوطني والإقليمي.</value>
+  </data>
+  <data name="AboutUs2" xml:space="preserve">
+    <value>نحن رواد رقمي عالمي نقدم خدمات ومنصات مبتكرة لعملائنا وتمكين التحول الرقمي في منطقة الشرق الأوسط وشمال إفريقيا.</value>
+  </data>
+  <data name="AllRightsReserved" xml:space="preserve">
+    <value>جميع الحقوق محفوظة stc © 2020</value>
+  </data>
+  <data name="OurVision" xml:space="preserve">
+    <value>رؤيتنا</value>
+  </data>
+  <data name="ContactUs" xml:space="preserve">
+    <value>تواصل معنا</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>تغيير؟ </value>
+  </data>
+  <data name="VerifyEmail" xml:space="preserve">
+    <value>التحقق عن طريق البريد الالكتروني</value>
+  </data>
+  <data name="AccessControl" xml:space="preserve">
+    <value>صلاحية التحكم</value>
+  </data>
+  <data name="AppApperence" xml:space="preserve">
+    <value>شكل التطبيق</value>
+  </data>
+  <data name="AppLanguage" xml:space="preserve">
+    <value>لغة التطبيق</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>الإنجليزية</value>
+  </data>
+  <data name="GeneralNotifications" xml:space="preserve">
+    <value>الإشعارات العامة</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>اللغة</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>تسجيل الخروج</value>
+  </data>
+  <data name="Notifications" xml:space="preserve">
+    <value>الإشعارات </value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>الإعدادات</value>
+  </data>
+  <data name="SettingsQuote" xml:space="preserve">
+    <value>نحن نستخدم لغة هاتفك افتراضيًا ، 
+و يمكنك تغيير اللغة بسهولة </value>
+  </data>
+  <data name="UserFingerprint" xml:space="preserve">
+    <value>استخدام بصمة الاصبع</value>
+  </data>
+  <data name="Privacy Statements" xml:space="preserve">
+    <value>بيانات الخصوصية</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>ارسال</value>
+  </data>
+  <data name="STCHomePage" xml:space="preserve">
+    <value>الصفحة الرئيسية</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>السابق</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>التالي</value>
+  </data>
+  <data name="Contract" xml:space="preserve">
+    <value>العقد</value>
+  </data>
+  <data name="ContractAgreement" xml:space="preserve">
+    <value>العقد</value>
+  </data>
+  <data name="Downloads" xml:space="preserve">
+    <value>التنزيلات</value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>الملفات</value>
+  </data>
+  <data name="AccessDetials" xml:space="preserve">
+    <value>تفاصيل الوصول</value>
+  </data>
+  <data name="AccountDetails" xml:space="preserve">
+    <value>تفاصيل الحساب</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>العنوان</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>تغيير كلمة المرور</value>
+  </data>
+  <data name="ContactDetails" xml:space="preserve">
+    <value>تفاصيل الحساب</value>
+  </data>
+  <data name="DateofBirth" xml:space="preserve">
+    <value>تاريخ الميلاد</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>الإسم الأول</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>النوع</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>الاسم الاخير</value>
+  </data>
+  <data name="NationalAddress" xml:space="preserve">
+    <value>العنوان المحلي</value>
+  </data>
+  <data name="Nationality" xml:space="preserve">
+    <value>الجنسية</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>معلق</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>الملف الشخصي</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>حفظ</value>
+  </data>
+  <data name="Twitter" xml:space="preserve">
+    <value>تويتر</value>
+  </data>
+  <data name="YourInquiries" xml:space="preserve">
+    <value>تساؤلاتك</value>
+  </data>
+  <data name="PrivacyStatements" xml:space="preserve">
+    <value>بيانات الخصوصية </value>
+  </data>
+  <data name="CodeSentSuccessfully" xml:space="preserve">
+    <value>تم ارسال الكود بنجاح</value>
+  </data>
+  <data name="FillRequiredFields" xml:space="preserve">
+    <value>رجاء املأ الحقول المطلوبة</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>البريد الالكتروني غير صحيح</value>
+  </data>
+  <data name="InvalidPassword" xml:space="preserve">
+    <value>الرقم السري غير صحيح</value>
+  </data>
+  <data name="InquiryLbl" xml:space="preserve">
+    <value>استعلام</value>
+  </data>
+  <data name="CallMe" xml:space="preserve">
+    <value>الإتصال بي</value>
+  </data>
+  <data name="ConfirmPasswordChange" xml:space="preserve">
+    <value>تأكيد تغيير كلمة المرور</value>
+  </data>
+  <data name="MakeStrong" xml:space="preserve">
+    <value>اجعلها قوية </value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>كلمة المرور الجديدة</value>
+  </data>
+  <data name="ResendSMS" xml:space="preserve">
+    <value>ارسال رسالة مجددا</value>
+  </data>
+  <data name="SetNewPasswordML" xml:space="preserve">
+    <value>تعيين 
+كلمة مرور جديدة</value>
+  </data>
+  <data name="Verify" xml:space="preserve">
+    <value>التحقق من</value>
+  </data>
+  <data name="VerifyPassword" xml:space="preserve">
+    <value>تأكيد كلمة المرور</value>
+  </data>
+  <data name="VerifyEmailQuote" xml:space="preserve">
+    <value>من فضلك أدخل الرقم السري المرسل إلى</value>
+  </data>
+  <data name="CongratulationsPasswordChanged" xml:space="preserve">
+    <value>تهانينا
+
+تم تغيير كلمة المرور</value>
+  </data>
+  <data name="CongratulationsVerified" xml:space="preserve">
+    <value>تهانينا
+
+تم التحقق بنجاح.</value>
+  </data>
+  <data name="NewPasswordSaved" xml:space="preserve">
+    <value>تم حفظ كلمة المرور الجديدة</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>رفض</value>
+  </data>
+  <data name="Sign" xml:space="preserve">
+    <value>توقيع</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>امسح</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>تاكيد كلمة المرور</value>
+  </data>
+  <data name="SignHere" xml:space="preserve">
+    <value>امضي هنا</value>
+  </data>
+  <data name="EamilRequiredMsg" xml:space="preserve">
+    <value>البريد الإلكتروني أو رقم الجوال مطلوب</value>
+  </data>
+  <data name="PasswordRequiredMsg" xml:space="preserve">
+    <value>كلمة المرور مطلوبة.</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>كلمة المرور الحالية</value>
+  </data>
+  <data name="Uploading" xml:space="preserve">
+    <value>جارٍ الرفع ... </value>
+  </data>
+  <data name="VerifyUsing" xml:space="preserve">
+    <value>التحقق بواسطة</value>
+  </data>
+  <data name="NoMessages" xml:space="preserve">
+    <value>لا يوجد رسائل</value>
+  </data>
+  <data name="Optional" xml:space="preserve">
+    <value>اختياري</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>تم</value>
+  </data>
+  <data name="CongratulationsRegister" xml:space="preserve">
+    <value>تهانينا 
+
+انت الان عضو في STC</value>
+  </data>
+  <data name="EmailRequired" xml:space="preserve">
+    <value>البريد الالكتروني مطلوب</value>
+  </data>
+  <data name="MobileRequired" xml:space="preserve">
+    <value>رقم الجوال مطلوب</value>
+  </data>
+  <data name="FullNameReuquired" xml:space="preserve">
+    <value>الإسم بالكامل مطلوب</value>
+  </data>
+  <data name="EmailorPasswordInCorrect" xml:space="preserve">
+    <value>البريد الالكتروني او كلمة المرور غير صحيحة</value>
+  </data>
+  <data name="PassowrdContains" xml:space="preserve">
+    <value>كلمة المرور يجب ان تحتوي علي رموز و ارقام</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>اغلاق</value>
+  </data>
+  <data name="UnSavedChanges" xml:space="preserve">
+    <value>تغييرات لم يتم حفظها</value>
+  </data>
+  <data name="unSavedChangesQuote" xml:space="preserve">
+    <value>هل انت متاكد انك تريد الرجوع؟</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>موافق</value>
+  </data>
+  <data name="PassowrdNotMatched" xml:space="preserve">
+    <value>كلمة المرور غير متشابهة</value>
+  </data>
+  <data name="EmailMaxLength" xml:space="preserve">
+    <value>يجب ألا يزيد عدد الاحرف عن 64 حرف</value>
+  </data>
+  <data name="InvalidMobile" xml:space="preserve">
+    <value>رقم الجوال غير صحيح</value>
+  </data>
+  <data name="invalidName" xml:space="preserve">
+    <value>الاسم غير صحيح</value>
+  </data>
+  <data name="MobileMaxLength" xml:space="preserve">
+    <value>يجب ان يكون عدد الارقام  10 ارقام</value>
+  </data>
+  <data name="NameMaxLength" xml:space="preserve">
+    <value>يجب ألا يزيد عدد الأحرف عن 32 حرف</value>
+  </data>
+  <data name="PasswordMaxLength" xml:space="preserve">
+    <value>يجب ألا يزيد عدد الأحرف عن 16 حرف</value>
+  </data>
+  <data name="EnterValidOTP" xml:space="preserve">
+    <value>برجاء ادخال كود صحيح</value>
+  </data>
+  <data name="info" xml:space="preserve">
+    <value>معلومة</value>
+  </data>
+  <data name="ProfileUpdated" xml:space="preserve">
+    <value>تم تحديث الحساب بنجاح</value>
+  </data>
+  <data name="CameraAccessDenied" xml:space="preserve">
+    <value>لم تقم باعطاني صلاحية الكاميرا</value>
+  </data>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>صلاحية قراءة وحدة التخزين لم تمنح : رفض</value>
+  </data>
+  <data name="VerficationSuccessed" xml:space="preserve">
+    <value>تم التحقق بنجاح</value>
+  </data>
+  <data name="ProfilePictureUpdated" xml:space="preserve">
+    <value>تم تعديل الصورة الشخصية بنجاح</value>
+  </data>
+  <data name="SuccessfulRequest" xml:space="preserve">
+    <value>تم ارسال طلبك بنجاح</value>
+  </data>
+  <data name="Congratulations" xml:space="preserve">
+    <value>تهانينا</value>
+  </data>
+  <data name="SameName" xml:space="preserve">
+    <value>لقد قمت بإدخال نفس الاسم</value>
+  </data>
+  <data name="SameData" xml:space="preserve">
+    <value>البيانات لم تتغير</value>
+  </data>
+  <data name="InvalidAttachmentTitle" xml:space="preserve">
+    <value>عنوان المرفق غير صالح</value>
+  </data>
+  <data name="ChooseAttachment" xml:space="preserve">
+    <value>من فضلك أضف مرفق</value>
+  </data>
+  <data name="ChooseLocation" xml:space="preserve">
+    <value>من فضلك اختر موقع</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>لا توجد بيانات</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>هذا الحقل مطلوب</value>
+  </data>
+  <data name="Wait" xml:space="preserve">
+    <value>جاري التحميل...</value>
+  </data>
+  <data name="NoInquiries" xml:space="preserve">
+    <value>لا توجد استفسارات</value>
+  </data>
+  <data name="NoContract" xml:space="preserve">
+    <value>لا يوجد عقد</value>
+  </data>
+  <data name="CanNotOpenLink" xml:space="preserve">
+    <value>غير قادر علي فتح الرابط</value>
+  </data>
+  <data name="FileDonwloadedSuccessfully" xml:space="preserve">
+    <value>تم حفظ الملف بنجاح في التنزيلات</value>
+  </data>
+  <data name="NoNextRequest" xml:space="preserve">
+    <value>لا يوجد طلب قادم</value>
+  </data>
+  <data name="NoPreviouseRequest" xml:space="preserve">
+    <value>لا يوجد طلب سابق</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>خطأ</value>
+  </data>
+  <data name="MustSign" xml:space="preserve">
+    <value>يجب التوقيع في المساحة البيضاء</value>
+  </data>
+  <data name="ContractUpdated" xml:space="preserve">
+    <value>لقد تم تعديل العقد من فضلك اقرأ العقد مرة آخري</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>تحذير</value>
+  </data>
+  <data name="Signature" xml:space="preserve">
+    <value>التوقيع</value>
+  </data>
+  <data name="AcceptTerms" xml:space="preserve">
+    <value>الرجاء قبول الشروط والأحكام</value>
+  </data>
+  <data name="GotoLogin" xml:space="preserve">
+    <value>الذهاب الى تسجيل الدخول</value>
+  </data>
+  <data name="EmailTxt" xml:space="preserve">
+    <value>البريد الإلكترونى</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>اختر</value>
+  </data>
+  <data name="FileNotDonwloaded" xml:space="preserve">
+    <value>لم يتم حفظ الملف</value>
+  </data>
+  <data name="PermissionRequired" xml:space="preserve">
+    <value>مطلوب تصريح</value>
+  </data>
+  <data name="PermissionRequiredMsg" xml:space="preserve">
+    <value>الرجاء السماح بالتصريح المطلوب للمتابعة</value>
+  </data>
+  <data name="TypeMessage" xml:space="preserve">
+    <value>أكتب رسالة</value>
+  </data>
+  <data name="NotConnected" xml:space="preserve">
+    <value>لا يوجد إتصال بالشبكة</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>السابق</value>
+  </data>
 </root>

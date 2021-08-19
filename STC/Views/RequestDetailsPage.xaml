@@ -1,0 +1,663 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="STC.Views.RequestDetailsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:STC.Behaviors"
+    xmlns:cells="clr-namespace:STC.Cells"
+    xmlns:com="clr-namespace:STC.Common.CommonControlls;assembly=STC.Common"
+    xmlns:conv="clr-namespace:STC.Common.Converters;assembly=STC.Common"
+    xmlns:converter="clr-namespace:STC.Converters"
+    xmlns:local="clr-namespace:STC.ViewModels"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:rs="clr-namespace:STC.Resources"
+    xmlns:selector="clr-namespace:STC.TemplateSelector"
+    xmlns:sfChat="clr-namespace:Syncfusion.XForms.Chat;assembly=Syncfusion.SfChat.XForms"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    x:Name="RequestDetails"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <conv:RotationConverter x:Key="RotationConvert" />
+            <converter:LengthConverter x:Key="converter" />
+            <converter:ContractImageConverter x:Key="ContractImage" />
+            <converter:AttachmentIconConverter x:Key="AttachmentIcon" />
+            <conv:Switcher x:Key="Switch" />
+            <x:String x:Key="SfChatTheme">CustomTheme</x:String>
+            <Color x:Key="SfChatMessageInputViewBackgroundColor">Transparent</Color>
+            <!--<cells:DateTimeCell x:Key="dateCell" />
+            <cells:SenderCell x:Key="senderCell" />
+            <cells:ReceiverCell x:Key="receiverCell" />
+            <selector:InquiriesTemplateSelector
+                x:Key="chatSelector"
+                DateTimeemplate="{StaticResource dateCell}"
+                ReceiverTemplate="{StaticResource receiverCell}"
+                SenderTemplate="{StaticResource senderCell}" />-->
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <com:BasePageContentView Lang="{Binding Lang}">
+            <com:BasePageContentView.AppConntentView>
+                <Grid
+                    x:Name="RootGrid"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    RowDefinitions="Auto,*">
+                    <StackLayout
+                        Grid.Row="0"
+                        Margin="20,30,20,30"
+                        Orientation="Horizontal">
+                        <Image
+                            HorizontalOptions="StartAndExpand"
+                            RotationY="{Binding Lang, Converter={StaticResource RotationConvert}}"
+                            Source="BackArrow">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GoBackCommand}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <Label
+                            FontFamily="STCForwardBold"
+                            FontSize="16"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding UserRequest.number}"
+                            TextColor="White"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center" />
+
+                        <!--<Image
+                            Margin="5"
+                            HeightRequest="20"
+                            Opacity="0.7"
+                            Source="arrow_down"
+                            WidthRequest="20" />-->
+                        <Image HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="1">
+
+                        <Label
+                            FontFamily="STCForwardBold"
+                            FontSize="16"
+                            HorizontalTextAlignment="Center"
+                            IsVisible="{Binding IsKeyboardOpen, Converter={StaticResource Key=Switch}}"
+                            Opacity="0.8"
+                            Text="{Binding FormatedRequestDate}"
+                            TextColor="White" />
+
+                        <Grid
+                            Margin="0,0,0,10"
+                            ColumnDefinitions="*,*,*"
+                            IsVisible="{Binding IsKeyboardOpen, Converter={StaticResource Key=Switch}}">
+                            <yummy:PancakeView
+                                Grid.Column="0"
+                                BackgroundColor="{Binding UserRequest.requestStatusColor}"
+                                CornerRadius="20"
+                                HeightRequest="40"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                WidthRequest="108">
+                                <Label
+                                    HorizontalOptions="Center"
+                                    Text="{Binding UserRequest.requestStatus}"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
+
+
+                            </yummy:PancakeView>
+                            <StackLayout Grid.Column="1">
+                                <!--<Image
+                                        HeightRequest="25"
+                                        HorizontalOptions="Center"
+                                        Source="ic_add_red"
+                                        WidthRequest="20" />
+                                    <Label
+                                        Margin="10"
+                                        FontFamily="STCForwardRegular"
+                                        FontSize="16"
+                                        HorizontalOptions="Center"
+                                        Text="{x:Static rs:AppResources.InquiryLbl}"
+                                        TextColor="#FF385E" />
+
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenInqCommand}" />
+                                    </StackLayout.GestureRecognizers>-->
+                            </StackLayout>
+                            <Image
+                                Grid.Column="2"
+                                Margin="30,0,30,0"
+                                HeightRequest="50"
+                                HorizontalOptions="Center"
+                                Source="ic_pin"
+                                VerticalOptions="Center"
+                                WidthRequest="50">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OpenLocationCommand}" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Grid>
+
+                        <ScrollView HeightRequest="60" IsVisible="{Binding IsKeyboardOpen, Converter={StaticResource Key=Switch}}">
+                            <Label
+                                Margin="10"
+                                FontFamily="STCForwardBold"
+                                FontSize="12"
+                                HorizontalTextAlignment="Center"
+                                LineBreakMode="WordWrap"
+                                MaxLines="-1"
+                                Opacity="0.8"
+                                Text="{Binding UserRequest.description}"
+                                TextColor="White" />
+                        </ScrollView>
+
+                        <!--  .............................inqury actions...........Descriptin ...................  -->
+                        <Grid
+                            Margin="0,0,0,10"
+                            ColumnDefinitions="*,*,*"
+                            IsVisible="{Binding IsKeyboardOpen, Converter={StaticResource Key=Switch}}">
+                            <StackLayout Grid.Column="0">
+                                <com:LocalizedImage
+                                    HeightRequest="25"
+                                    HorizontalOptions="Center"
+                                    Lang="{Binding Lang}"
+                                    Source="ic_back_white"
+                                    WidthRequest="20" />
+                                <Label
+                                    Margin="10"
+                                    FontFamily="STCForwardRegular"
+                                    FontSize="16"
+                                    HorizontalOptions="Center"
+                                    Text="{x:Static rs:AppResources.Previous}"
+                                    TextColor="White" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding PreviousRequestCommant}" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1">
+                                <!--<Image
+                                        HeightRequest="25"
+                                        HorizontalOptions="Center"
+                                        Source="ic_add_red"
+                                        WidthRequest="20" />
+                                    <Label
+                                        Margin="10"
+                                        FontFamily="STCForwardRegular"
+                                        FontSize="16"
+                                        HorizontalOptions="Center"
+                                        Text="{x:Static rs:AppResources.InquiryLbl}"
+                                        TextColor="#FF385E" />
+
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenInqCommand}" />
+                                    </StackLayout.GestureRecognizers>-->
+                            </StackLayout>
+                            <StackLayout Grid.Column="2">
+                                <com:LocalizedImage
+                                    HeightRequest="25"
+                                    HorizontalOptions="Center"
+                                    Lang="{Binding Lang}"
+                                    Source="ic_next_white"
+                                    WidthRequest="20" />
+                                <Label
+                                    Margin="10"
+                                    FontFamily="STCForwardRegular"
+                                    FontSize="16"
+                                    HorizontalOptions="Center"
+                                    Text="{x:Static rs:AppResources.Next}"
+                                    TextColor="White" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NextRequestCommant}" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Grid>
+
+                        <!--  .............................tabs view..............................  -->
+                        <Grid
+                            x:Name="SubRootGrid"
+                            ColumnDefinitions="*,*,*"
+                            ColumnSpacing="0"
+                            HeightRequest="300"
+                            RowDefinitions="55,*"
+                            RowSpacing="0"
+                            VerticalOptions="FillAndExpand">
+                            <BoxView
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                BackgroundColor="White" />
+                            <!--  .............................tabs header..............................  -->
+                            <Label
+                                x:Name="LblFiles"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                BackgroundColor="#F3F3F1"
+                                FontFamily="STCForwardRegular"
+                                FontSize="20"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static rs:AppResources.Files}"
+                                TextColor="#575858"
+                                VerticalTextAlignment="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="FilesBtn_Clicked" />
+                                </Label.GestureRecognizers>
+                            </Label>
+
+                            <!--<Button
+                                    x:Name="FilesBtn"
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    BackgroundColor="#F3F3F1"
+                                    Clicked="FilesBtn_Clicked"
+                                    Opacity="0.1" />-->
+
+                            <Label
+                                x:Name="LblInquiries"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                BackgroundColor="#F3F3F1"
+                                FontFamily="STCForwardBold"
+                                FontSize="20"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static rs:AppResources.Inquiries}"
+                                TextColor="#8E9AA0"
+                                VerticalTextAlignment="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="InquiriesBtn_Clicked" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <!--<Button
+                                    x:Name="InquiriesBtn"
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    BackgroundColor="#F3F3F1"
+                                    Clicked="InquiriesBtn_Clicked"
+                                    Opacity="0.1" />-->
+
+                            <Label
+                                x:Name="LblContract"
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                BackgroundColor="#F3F3F1"
+                                FontFamily="STCForwardBold"
+                                FontSize="20"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static rs:AppResources.Contract}"
+                                TextColor="#8E9AA0"
+                                VerticalTextAlignment="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ContractsBtn_Clicked" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <!--<Button
+                                    x:Name="ContractsBtn"
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    BackgroundColor="#F3F3F1"
+                                    Clicked="ContractsBtn_Clicked"
+                                    Opacity="0.1" />-->
+
+                            <BoxView
+                                x:Name="UnderlineView"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                BackgroundColor="#787171"
+                                CornerRadius="6,6,0,0"
+                                HeightRequest="6"
+                                VerticalOptions="End" />
+
+                            <!--  .............................tabs content..............................  -->
+
+                            <!--  .............................tab files content ..............................  -->
+                            <StackLayout
+                                x:Name="FilesView"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                Margin="0,5,0,0"
+                                Padding="10"
+                                HorizontalOptions="FillAndExpand"
+                                IsVisible="true"
+                                VerticalOptions="FillAndExpand">
+                                <ListView
+                                    BackgroundColor="#53008f"
+                                    HasUnevenRows="True"
+                                    ItemsSource="{Binding Files}"
+                                    SeparatorVisibility="None">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Frame
+                                                    x:Name="FileCell"
+                                                    Margin="10"
+                                                    BackgroundColor="#F7F5F5"
+                                                    CornerRadius="10"
+                                                    HasShadow="False">
+                                                    <StackLayout Orientation="Horizontal" Spacing="20">
+                                                        <Image
+                                                            HeightRequest="90"
+                                                            ScaleX="0.8"
+                                                            ScaleY="1"
+                                                            Source="{Binding IsImage, Converter={StaticResource Key=AttachmentIcon}}"
+                                                            WidthRequest="58">
+                                                            <Image.Triggers>
+                                                                <DataTrigger
+                                                                    Binding="{Binding IsImage}"
+                                                                    TargetType="Image"
+                                                                    Value="True">
+                                                                    <Setter Property="ScaleX" Value="1" />
+                                                                    <Setter Property="ScaleY" Value="1" />
+                                                                </DataTrigger>
+                                                            </Image.Triggers>
+                                                        </Image>
+                                                        <StackLayout Spacing="10" VerticalOptions="Center">
+                                                            <Label
+                                                                Margin="5"
+                                                                FontFamily="STCForwardBold"
+                                                                FontSize="18"
+                                                                Text="{Binding Title}"
+                                                                TextColor="#454545" />
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <yummy:PancakeView
+                                                                    Padding="10"
+                                                                    BackgroundColor="{StaticResource PrimaryColor}"
+                                                                    CornerRadius="4">
+                                                                    <StackLayout Orientation="Horizontal">
+                                                                        <Image
+                                                                            HeightRequest="10"
+                                                                            Source="ic_view"
+                                                                            WidthRequest="10" />
+                                                                        <Label
+                                                                            FontFamily="STCForwardRegular"
+                                                                            FontSize="14"
+                                                                            Text="{x:Static rs:AppResources.view}"
+                                                                            TextColor="White" />
+
+                                                                    </StackLayout>
+                                                                    <yummy:PancakeView.GestureRecognizers>
+                                                                        <TapGestureRecognizer
+                                                                            BindingContext="{Binding Source={x:Reference RequestDetails}, Path=BindingContext}"
+                                                                            Command="{Binding ViewFileCommand}"
+                                                                            CommandParameter="{Binding Source={x:Reference FileCell}, Path=BindingContext}" />
+                                                                    </yummy:PancakeView.GestureRecognizers>
+                                                                </yummy:PancakeView>
+                                                                <yummy:PancakeView
+                                                                    Padding="10"
+                                                                    BackgroundColor="{StaticResource CoralPinkColor}"
+                                                                    CornerRadius="4">
+                                                                    <StackLayout Orientation="Horizontal">
+                                                                        <Image
+                                                                            HeightRequest="10"
+                                                                            Source="ic_download"
+                                                                            WidthRequest="10" />
+                                                                        <Label
+                                                                            FontFamily="STCForwardRegular"
+                                                                            FontSize="14"
+                                                                            Text="{x:Static rs:AppResources.download}"
+                                                                            TextColor="White" />
+                                                                    </StackLayout>
+                                                                    <yummy:PancakeView.GestureRecognizers>
+                                                                        <TapGestureRecognizer
+                                                                            BindingContext="{Binding Source={x:Reference RequestDetails}, Path=BindingContext}"
+                                                                            Command="{Binding DownloadFileCommand}"
+                                                                            CommandParameter="{Binding Source={x:Reference FileCell}, Path=BindingContext}" />
+                                                                    </yummy:PancakeView.GestureRecognizers>
+                                                                </yummy:PancakeView>
+                                                            </StackLayout>
+                                                        </StackLayout>
+
+                                                    </StackLayout>
+                                                </Frame>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                    <ListView.Behaviors>
+                                        <behaviors:DisableListItemSelectionBehavior />
+                                    </ListView.Behaviors>
+                                </ListView>
+
+                            </StackLayout>
+                            <!--  .............................tab Inquiries content ..............................  -->
+
+                            <AbsoluteLayout
+                                x:Name="InquiriesView"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                IsVisible="False"
+                                VerticalOptions="Fill">
+                                <Label
+                                    Padding="20"
+                                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                    AbsoluteLayout.LayoutFlags="All"
+                                    FontFamily="STCForwardRegular"
+                                    FontSize="17"
+                                    HorizontalOptions="FillAndExpand"
+                                    HorizontalTextAlignment="Center"
+                                    IsVisible="{Binding NoInquiries}"
+                                    Text="{x:Static rs:AppResources.NoInquiries}"
+                                    TextColor="White"
+                                    VerticalOptions="FillAndExpand"
+                                    VerticalTextAlignment="Center" />
+
+                                <sfChat:SfChat
+                                    x:Name="sfChat"
+                                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                    AbsoluteLayout.LayoutFlags="All"
+                                    AttachmentButtonClicked="sfChat_AttachmentButtonClicked"
+                                    BackgroundColor="#53008f"
+                                    IncomingMessageTimestampFormat="hh:mm tt"
+                                    LoadMoreBehavior="{Binding LoadMoreBehavior}"
+                                    LoadMoreCommand="{Binding LoadMoreCommand}"
+                                    Messages="{Binding Messages}"
+                                    OutgoingMessageTimestampFormat="hh:mm tt"
+                                    SendMessage="SfChat_SendMessage"
+                                    ShowAttachmentButton="True"
+                                    ShowIncomingMessageTimestamp="True"
+                                    ShowMessageInputView="{Binding IsChatVisible}"
+                                    ShowOutgoingMessageAvatar="False"
+                                    ShowOutgoingMessageTimestamp="True"
+                                    TypingIndicatorViewHeight="0">
+                                    <sfChat:SfChat.LoadMoreTemplate>
+                                        <DataTemplate>
+                                            <ActivityIndicator
+                                                Margin="0"
+                                                HorizontalOptions="Center"
+                                                IsRunning="True"
+                                                VerticalOptions="Center"
+                                                Color="{StaticResource LoadingSpinnerColor}" />
+                                        </DataTemplate>
+                                    </sfChat:SfChat.LoadMoreTemplate>
+                                </sfChat:SfChat>
+
+                                <Grid
+                                    x:Name="GridAttachMenu"
+                                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                    AbsoluteLayout.LayoutFlags="All"
+                                    IsVisible="False"
+                                    RowDefinitions="*,130,30">
+
+                                    <yummy:PancakeView
+                                        x:Name="PancakeMenu"
+                                        Scale="0"
+                                        Grid.Row="1"
+                                        Margin="{OnPlatform Android='40,40,40,0',iOS='40,40,40,-20' }"
+                                        Padding="3"
+                                        BackgroundColor="White"
+                                        CornerRadius="15"
+                                        HeightRequest="70"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Start"
+                                        WidthRequest="100">
+                                        <yummy:PancakeView.Shadow>
+                                            <yummy:DropShadow Offset="10,10" Color="#000000" />
+                                        </yummy:PancakeView.Shadow>
+                                        <StackLayout Orientation="Horizontal" Spacing="0">
+                                            <StackLayout
+                                                HeightRequest="50"
+                                                HorizontalOptions="Center"
+                                                Orientation="Vertical"
+                                                VerticalOptions="Center"
+                                                WidthRequest="50">
+                                                <Image
+                                                    HeightRequest="40"
+                                                    HorizontalOptions="Center"
+                                                    Source="ic_gallery"
+                                                    VerticalOptions="Center"
+                                                    WidthRequest="40" />
+                                                <StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_ImgImage" />
+                                                </StackLayout.GestureRecognizers>
+                                            </StackLayout>
+                                            <StackLayout
+                                                HeightRequest="50"
+                                                HorizontalOptions="Center"
+                                                Orientation="Vertical"
+                                                VerticalOptions="Center"
+                                                WidthRequest="50">
+                                                <Image
+                                                    HeightRequest="40"
+                                                    HorizontalOptions="Center"
+                                                    Source="ic_document"
+                                                    VerticalOptions="Center"
+                                                    WidthRequest="40" />
+                                                <StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_ImgFile" />
+                                                </StackLayout.GestureRecognizers>
+                                            </StackLayout>
+
+                                        </StackLayout>
+                                    </yummy:PancakeView>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                    </Grid.GestureRecognizers>
+
+                                </Grid>
+                            </AbsoluteLayout>
+
+                            <!--  .............................tab Contracts content ..............................  -->
+                            <StackLayout
+                                x:Name="ContractsView"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                Margin="0,5,0,0"
+                                Padding="10"
+                                HorizontalOptions="FillAndExpand"
+                                IsVisible="false"
+                                VerticalOptions="FillAndExpand">
+                                <Label
+                                    FontFamily="STCForwardRegular"
+                                    FontSize="17"
+                                    HorizontalOptions="FillAndExpand"
+                                    HorizontalTextAlignment="Center"
+                                    IsVisible="{Binding NoContract}"
+                                    Text="{x:Static rs:AppResources.NoContract}"
+                                    TextColor="White"
+                                    VerticalOptions="FillAndExpand"
+                                    VerticalTextAlignment="Center" />
+                                <ListView
+                                    BackgroundColor="#53008f"
+                                    HasUnevenRows="True"
+                                    IsVisible="{Binding NoContract, Converter={StaticResource Key=Switch}}"
+                                    ItemsSource="{Binding Contracts}"
+                                    SeparatorVisibility="None">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Frame
+                                                    x:Name="ContractCell"
+                                                    Margin="10"
+                                                    BackgroundColor="#F7F5F5"
+                                                    CornerRadius="10"
+                                                    HasShadow="False">
+                                                    <StackLayout Orientation="Horizontal" Spacing="20">
+                                                        <Image
+                                                            HeightRequest="90"
+                                                            Source="{Binding AttachmentTypeId, Converter={StaticResource Key=ContractImage}}"
+                                                            WidthRequest="58" />
+                                                        <StackLayout
+                                                            HeightRequest="80"
+                                                            Spacing="10"
+                                                            VerticalOptions="Center">
+                                                            <Label
+                                                                Margin="5"
+                                                                FontFamily="STCForwardBold"
+                                                                FontSize="18"
+                                                                Text="{x:Static rs:AppResources.ContractAgreement}"
+                                                                TextColor="#454545">
+                                                                <Label.Triggers>
+                                                                    <DataTrigger
+                                                                        Binding="{Binding AttachmentTypeId}"
+                                                                        TargetType="Label"
+                                                                        Value="4">
+                                                                        <Setter Property="Text" Value="{x:Static rs:AppResources.Signature}" />
+                                                                    </DataTrigger>
+                                                                </Label.Triggers>
+                                                            </Label>
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <yummy:PancakeView
+                                                                    Padding="10"
+                                                                    BackgroundColor="{StaticResource PrimaryColor}"
+                                                                    CornerRadius="4">
+                                                                    <StackLayout Orientation="Horizontal">
+                                                                        <Image
+                                                                            HeightRequest="10"
+                                                                            Source="ic_view"
+                                                                            WidthRequest="10" />
+                                                                        <Label
+                                                                            FontFamily="STCForwardRegular"
+                                                                            FontSize="14"
+                                                                            Text="{x:Static rs:AppResources.view}"
+                                                                            TextColor="White" />
+
+                                                                    </StackLayout>
+                                                                    <yummy:PancakeView.GestureRecognizers>
+                                                                        <TapGestureRecognizer
+                                                                            BindingContext="{Binding Source={x:Reference RequestDetails}, Path=BindingContext}"
+                                                                            Command="{Binding ViewContractCommand}"
+                                                                            CommandParameter="{Binding Source={x:Reference ContractCell}, Path=BindingContext}" />
+                                                                    </yummy:PancakeView.GestureRecognizers>
+                                                                </yummy:PancakeView>
+                                                                <yummy:PancakeView
+                                                                    Padding="10"
+                                                                    BackgroundColor="{StaticResource CoralPinkColor}"
+                                                                    CornerRadius="4">
+                                                                    <StackLayout Orientation="Horizontal">
+                                                                        <Image
+                                                                            HeightRequest="10"
+                                                                            Source="ic_download"
+                                                                            WidthRequest="10" />
+                                                                        <Label
+                                                                            FontFamily="STCForwardRegular"
+                                                                            FontSize="14"
+                                                                            Text="{x:Static rs:AppResources.download}"
+                                                                            TextColor="White" />
+
+                                                                    </StackLayout>
+                                                                    <yummy:PancakeView.GestureRecognizers>
+                                                                        <TapGestureRecognizer
+                                                                            BindingContext="{Binding Source={x:Reference RequestDetails}, Path=BindingContext}"
+                                                                            Command="{Binding DownloadContractCommand}"
+                                                                            CommandParameter="{Binding Source={x:Reference ContractCell}, Path=BindingContext}" />
+                                                                    </yummy:PancakeView.GestureRecognizers>
+                                                                </yummy:PancakeView>
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                </Frame>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                    <ListView.Behaviors>
+                                        <behaviors:DisableListItemSelectionBehavior />
+                                    </ListView.Behaviors>
+                                </ListView>
+
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                </Grid>
+            </com:BasePageContentView.AppConntentView>
+        </com:BasePageContentView>
+    </ContentPage.Content>
+</ContentPage>

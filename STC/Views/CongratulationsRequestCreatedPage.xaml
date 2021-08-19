@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="STC.Views.CongratulationsRequestCreatedPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:com="clr-namespace:STC.Common.CommonControlls;assembly=STC.Common"
+    xmlns:rs="clr-namespace:STC.Resources"
+    NavigationPage.HasNavigationBar="False">
+    <com:BasePageContentView Lang="{Binding Lang}">
+        <com:BasePageContentView.AppConntentView>
+            <ScrollView BackgroundColor="#05C48C">
+                <Grid Margin="20,20,20,0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.5*" />
+                        <RowDefinition Height="0.5*" />
+
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="0" Source="Congratulations.png" />
+
+                    <StackLayout Grid.Row="1" Spacing="40">
+                        <StackLayout Spacing="28">
+                            <Label
+                                FontFamily="STCForwardRegular"
+                                FontSize="24"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static rs:AppResources.Congratulations}"
+                                TextColor="White"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center" />
+
+                            <Label
+                                FontFamily="STCForwardRegular"
+                                FontSize="16"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static rs:AppResources.SuccessfulRequest}"
+                                TextColor="White"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center" />
+
+                        </StackLayout>
+
+                        <Button
+                            BackgroundColor="White"
+                            Command="{Binding CloseCommand}"
+                            CornerRadius="2"
+                            FontFamily="STCForwardMedium"
+                            FontSize="18"
+                            HeightRequest="55"
+                            Text="{x:Static rs:AppResources.Close}"
+                            TextColor="#05C48C" />
+                    </StackLayout>
+
+
+                </Grid>
+            </ScrollView>
+        </com:BasePageContentView.AppConntentView>
+    </com:BasePageContentView>
+</ContentPage>

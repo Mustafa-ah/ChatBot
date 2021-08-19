@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "272295583606",
+    "project_id": "siteacquisition-e72d0",
+    "storage_bucket": "siteacquisition-e72d0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272295583606:android:153c114c4e4075fd04e457",
+        "android_client_info": {
+          "package_name": "com.stc.towersiteacquisition"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "272295583606-um0ndnn8upa5m7q4535ii417qe09n087.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNUrQdVdSj-PBf6Ds7ufP66mZNduS33Yw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "272295583606-um0ndnn8upa5m7q4535ii417qe09n087.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="STC.Views.SettingsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:com="clr-namespace:STC.Common.CommonControlls;assembly=STC.Common"
+    xmlns:rs="clr-namespace:STC.Resources"
+    NavigationPage.HasNavigationBar="False">
+    <com:BasePageContentView Lang="{Binding Lang}">
+        <com:BasePageContentView.AppConntentView>
+            <StackLayout Padding="10" BackgroundColor="White">
+                <com:HeaderContentView
+                    Title="{x:Static rs:AppResources.Settings}"
+                    Margin="20,10,20,20"
+                    FontSize="16"
+                    Lang="{Binding Lang}"
+                    LeadingImageCommand="{Binding BackCommand}"
+                    TextColor="#242424" />
+                <ScrollView>
+                    <StackLayout>
+                        <Label
+                            Margin="20,0,20,0"
+                            FontFamily="STCForwardBold"
+                            FontSize="16"
+                            Text="{x:Static rs:AppResources.Language}"
+                            TextColor="Black" />
+
+                        <BoxView BackgroundColor="#d9d8de" HeightRequest="1" />
+
+                        <StackLayout Margin="20,10,20,10" Orientation="Horizontal">
+                            <Label
+                                FontFamily="STCForwardRegular"
+                                FontSize="16"
+                                HorizontalOptions="Start"
+                                Text="{x:Static rs:AppResources.AppLanguage}"
+                                TextColor="Black" />
+                            <Label
+                                FontFamily="STCForwardRegular"
+                                FontSize="16"
+                                HorizontalOptions="EndAndExpand"
+                                Text="{Binding CurrentLanguage}"
+                                TextColor="#5D0095" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ChangeLanguageCommand}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                        <Label
+                            Margin="20,0,20,0"
+                            FontFamily="STCForwardRegular"
+                            FontSize="14"
+                            Opacity="0.6"
+                            Text="{x:Static rs:AppResources.SettingsQuote}"
+                            TextColor="Gray" />
+
+
+
+                        <BoxView BackgroundColor="#d9d8de" HeightRequest="1" />
+                        <Label
+                            Margin="20,10,20,10"
+                            FontFamily="STCForwardRegular"
+                            FontSize="16"
+                            HorizontalOptions="Start"
+                            Text="{x:Static rs:AppResources.Logout}"
+                            TextColor="#FF375E">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                        <BoxView BackgroundColor="#d9d8de" HeightRequest="1" />
+
+
+
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+        </com:BasePageContentView.AppConntentView>
+    </com:BasePageContentView>
+</ContentPage>

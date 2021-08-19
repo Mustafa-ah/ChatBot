@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ViewCell
+        x:Class="STC.Cells.ReceiverCell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:STC.Converters"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                 x:Name="RecieverCell">
+    <ViewCell.View>
+        <yummy:PancakeView
+                Margin="20,10,20,10"
+                Padding="10,5,10,5"
+                BackgroundColor="#00C48C"
+                CornerRadius="15,15,15,15"
+                HorizontalOptions="Start" 
+                FlowDirection="MatchParent">
+            <yummy:PancakeView.Triggers>
+                <DataTrigger
+                        Binding="{Binding IsAttachment}"
+                        TargetType="yummy:PancakeView"
+                        Value="True">
+                </DataTrigger>
+            </yummy:PancakeView.Triggers>
+            <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+
+                    <StackLayout.Resources>
+                        <converter:AttachmentIconConverter x:Key="AttachmentIcon" />
+                    </StackLayout.Resources>
+                    <Image
+                            IsVisible="{Binding IsAttachment}"
+                           HeightRequest="40"
+                           WidthRequest="60"
+                           Margin="-10,0,-10,0"
+                            Source="{Binding IsImage, Converter={StaticResource Key=AttachmentIcon}}"
+                            VerticalOptions="Center"/>
+                    <Label
+                            FontFamily="STCForwardRegular"
+                            FontSize="15"
+                            Opacity="1"
+                            Text="{Binding Text}"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+                    <Image  IsVisible="{Binding IsAttachment}" Scale="0.5"  Source="download.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+                <Label
+                        FontFamily="STCForwardRegular"
+                        FontSize="10"
+                        HorizontalOptions="EndAndExpand"
+                        MaxLines="1"
+                        Opacity="0.7"
+                        Text="{Binding Date}"
+                        TextColor="White"
+                        VerticalOptions="Center"
+                        />
+            </StackLayout>
+        </yummy:PancakeView>
+    </ViewCell.View>
+</ViewCell>

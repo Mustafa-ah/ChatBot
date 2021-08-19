@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="STC.Views.MapPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:rs="clr-namespace:STC.Resources"
+    xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    prism:ViewModelLocator.AutowireViewModel="True">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+
+            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                    AbsoluteLayout.LayoutFlags="All">
+            <maps:Map x:Name="map" IsShowingUser="true" />
+            <Button
+                BackgroundColor="White"
+                BorderColor="{StaticResource Key=InActiveControllColor}"
+                BorderWidth="1.5"
+                Command="{Binding BackCommand}"
+                CornerRadius="2"
+                FontFamily="STCForwardMedium"
+                FontSize="16"
+                HorizontalOptions="FillAndExpand"
+                Text="{x:Static rs:AppResources.Select}"
+                TextColor="{StaticResource Key=LoadingLabelColor}"
+                VerticalOptions="Center" />
+        </StackLayout>
+
+            <StackLayout x:Name="MyLocationStack"
+                                    AbsoluteLayout.LayoutBounds="1,0,0.2,0.1"
+                                    AbsoluteLayout.LayoutFlags="All"
+                                    Orientation="Horizontal">
+                                    <Image
+                                        Margin="20,0,20,0"
+                                        WidthRequest="20"
+                                        HeightRequest="20"
+                                        HorizontalOptions="EndAndExpand"
+                                        Source="ic_my_location"
+                                        VerticalOptions="EndAndExpand" />
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_MyLocationStack" />
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+        </AbsoluteLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

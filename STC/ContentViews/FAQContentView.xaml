@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="STC.ContentViews.FAQContentView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:STC.Behaviors"
+    xmlns:com="clr-namespace:STC.Common.CommonControlls;assembly=STC.Common"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:rs="clr-namespace:STC.Resources"
+    x:Name="FaqsView">
+    <ContentView.Content>
+        <Grid
+            x:Name="RootGrid"
+            Margin="20"
+            RowDefinitions="40,30,80,*"
+            RowSpacing="20">
+
+            <Label
+                Grid.Row="0"
+                FontAttributes="Bold"
+                FontSize="28"
+                HorizontalOptions="Start"
+                Text="{x:Static rs:AppResources.Faq}"
+                TextColor="White"
+                VerticalOptions="Center" />
+
+
+            <Label
+                Grid.Row="1"
+                FontSize="18"
+                HorizontalOptions="Start"
+                Text="{x:Static rs:AppResources.DidntFindQuestion}"
+                TextColor="White"
+                VerticalOptions="Center" />
+
+            <StackLayout
+                Grid.Row="2"
+                HeightRequest="60"
+                VerticalOptions="Center">
+
+                <Frame
+                    Padding="10"
+                    BackgroundColor="White"
+                    CornerRadius="30"
+                    HasShadow="False"
+                    HeightRequest="70">
+
+                    <StackLayout Orientation="Horizontal">
+                        <!--<Image
+                            Margin="5"
+                            Source="ic_search"
+                            VerticalOptions="Center" >
+                        <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                 Command="{Binding SearchCommand}" />
+                            </Image.GestureRecognizers>
+                            </Image>-->
+                        <com:BorderlessEntry
+                            BackgroundColor="Transparent"
+                            FontFamily="STCForwardRegular"
+                            FontSize="16"
+                            HorizontalOptions="FillAndExpand"
+                            Placeholder="{x:Static rs:AppResources.SearchKeyword}"
+                            PlaceholderColor="#878383"
+                            TextChanged="BorderlessEntry_TextChanged"
+                            TextColor="Black"
+                            VerticalOptions="CenterAndExpand" />
+
+
+
+                    </StackLayout>
+
+                </Frame>
+
+            </StackLayout>
+
+            <Label
+                Grid.Row="3"
+                BackgroundColor="{StaticResource HomeTabsBackgroundColor}"
+                FontFamily="STCForwardRegular"
+                FontSize="17"
+                IsVisible="{Binding IsNoData}"
+                Opacity="0.61"
+                Text="{x:Static rs:AppResources.NoData}"
+                TextColor="White"
+                VerticalOptions="StartAndExpand" />
+            <ScrollView Grid.Row="3" VerticalScrollBarVisibility="Never">
+                <StackLayout x:Name="Expanders" Orientation="Vertical" />
+            </ScrollView>
+
+        </Grid>
+    </ContentView.Content>
+</ContentView>

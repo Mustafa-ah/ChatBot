@@ -19,11 +19,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="splash_screen.png" translatesAutoresizingMaskIntoConstraints="NO" id="23">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" red="0.32549019607843138" green="0.0" blue="0.5607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
-                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stc_logo_light.png" translatesAutoresizingMaskIntoConstraints="NO" id="7Yn-AI-Utj">
                                 <rect key="frame" x="135" y="412" width="144" height="72"/>
                                 <constraints>
@@ -35,10 +30,6 @@
                         <color key="backgroundColor" red="0.32549019607843138" green="0.0" blue="0.5607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.32297372819999998" green="0.076645068819999995" blue="0.65382546190000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="23" secondAttribute="bottom" id="5SY-MK-shN"/>
-                            <constraint firstItem="23" firstAttribute="top" secondItem="yd7-JS-zBw" secondAttribute="top" id="Anm-Mn-UHH"/>
-                            <constraint firstItem="23" firstAttribute="leading" secondItem="yd7-JS-zBw" secondAttribute="leading" id="WWl-1k-wdT"/>
-                            <constraint firstAttribute="trailing" secondItem="23" secondAttribute="trailing" id="n1K-wc-bb3"/>
                             <constraint firstItem="7Yn-AI-Utj" firstAttribute="centerY" secondItem="yd7-JS-zBw" secondAttribute="centerY" id="vMy-3h-GG1"/>
                             <constraint firstItem="7Yn-AI-Utj" firstAttribute="centerX" secondItem="yd7-JS-zBw" secondAttribute="centerX" id="y4d-Lb-Rg7"/>
                         </constraints>
@@ -50,7 +41,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="splash_screen.png" width="1125" height="2001"/>
         <image name="stc_logo_light.png" width="432" height="216"/>
     </resources>
 </document>

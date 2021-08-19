@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="STC.Views.FilePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:com="clr-namespace:STC.Common.CommonControlls;assembly=STC.Common"
+    xmlns:rs="clr-namespace:STC.Resources"
+    BackgroundColor="White"
+    NavigationPage.HasNavigationBar="True">
+    <ContentPage.Content>
+        <com:BasePageContentView Lang="{Binding Lang}">
+            <com:BasePageContentView.AppConntentView>
+                <AbsoluteLayout BackgroundColor="White" VerticalOptions="FillAndExpand">
+
+                    <WebView
+                        AbsoluteLayout.LayoutBounds="0,0,1,0.88"
+                        AbsoluteLayout.LayoutFlags="All"
+                        Navigated="WebView_Navigated"
+                        Source="{Binding FileURL}" />
+
+                    <StackLayout
+                        Padding="10"
+                        AbsoluteLayout.LayoutBounds="0,1,1,80"
+                        AbsoluteLayout.LayoutFlags="WidthProportional,PositionProportional"
+                        BackgroundColor="White"
+                        Orientation="Horizontal"
+                        Spacing="20">
+                        <Button
+                            BackgroundColor="White"
+                            BorderColor="{StaticResource Key=InActiveControllColor}"
+                            BorderWidth="1.5"
+                            Command="{Binding BackCommand}"
+                            CornerRadius="2"
+                            FontFamily="STCForwardMedium"
+                            FontSize="16"
+                            HorizontalOptions="FillAndExpand"
+                            Text="{x:Static rs:AppResources.Back}"
+                            TextColor="{StaticResource Key=LoadingLabelColor}"
+                            VerticalOptions="Center" />
+                        <!--<Button
+                            BackgroundColor="{StaticResource Key=CoralPinkColor}"
+                            BorderColor="{StaticResource Key=InActiveControllColor}"
+                            BorderWidth="1.5"
+                            Command="{Binding OpenSignaturePageCommand}"
+                            CornerRadius="10"
+                            FontFamily="STCForwardMedium"
+                            FontSize="16"
+                            HorizontalOptions="FillAndExpand"
+                            Text="{x:Static rs:AppResources.Sign}"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+                        <Button
+                            BackgroundColor="White"
+                            BorderColor="{StaticResource Key=InActiveControllColor}"
+                            BorderWidth="1.5"
+                            Command="{Binding OpenInquiriesPageCommand}"
+                            CornerRadius="2"
+                            FontFamily="STCForwardMedium"
+                            FontSize="16"
+                            HorizontalOptions="FillAndExpand"
+                            Text="{x:Static rs:AppResources.Inquiry}"
+                            TextColor="{StaticResource Key=LoadingLabelColor}"
+                            VerticalOptions="Center" />-->
+                    </StackLayout>
+                </AbsoluteLayout>
+
+            </com:BasePageContentView.AppConntentView>
+        </com:BasePageContentView>
+    </ContentPage.Content>
+</ContentPage>

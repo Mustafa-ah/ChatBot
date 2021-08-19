@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="STC.Views.RegisterPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="http://prismlibrary.com"
+    xmlns:com="clr-namespace:STC.Common.CommonControlls;assembly=STC.Common"
+    xmlns:rs="clr-namespace:STC.Resources"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+
+
+        <com:BasePageContentView Lang="{Binding Lang}">
+
+            <com:BasePageContentView.Resources>
+                <Style TargetType="com:EntryContentView" />
+            </com:BasePageContentView.Resources>
+            <com:BasePageContentView.AppConntentView>
+                <StackLayout BackgroundColor="White">
+                    <com:HeaderContentView
+                        Margin="20,20,20,0"
+                        Lang="{Binding Lang}"
+                        LeadingImageCommand="{Binding BackCommand}" />
+                    <ScrollView VerticalOptions="FillAndExpand">
+                        <StackLayout Spacing="20">
+
+
+                            <StackLayout Margin="20,0,20,50" Spacing="25">
+                                <Label
+                                    FontFamily="STCForwardMedium"
+                                    FontSize="28"
+                                    Text="{x:Static rs:AppResources.Welcome}"
+                                    TextColor="#171717" />
+
+                                <Label
+                                    FontFamily="STCForwardRegular"
+                                    FontSize="18"
+                                    Text="{x:Static rs:AppResources.RegisterQuote}"
+                                    TextColor="#717171" />
+                            </StackLayout>
+
+                            <com:EntryContentView
+                                Margin="20,0,20,0"
+                                LeadingImage="userEntry_inactive.png"
+                                NextFocus="{x:Reference EmailEntry}"
+                                Placeholder="{x:Static rs:AppResources.FullName}"
+                                PlaceholderColor="#9f9f9f"
+                                VerticalOptions="CenterAndExpand"
+                                Value="{Binding FullName}">
+                                <com:EntryContentView.Triggers>
+                                    <Trigger TargetType="com:EntryContentView" Property="IsActive" Value="True">
+                                        <Setter Property="LeadingImage" Value="userEntry_active" />
+                                    </Trigger>
+                                </com:EntryContentView.Triggers>
+                                <com:EntryContentView.Behaviors>
+                                    <behaviors:EventToCommandBehavior Command="{Binding EntryFocusedCommand}" EventName="EntryFocused" />
+                                    <behaviors:EventToCommandBehavior Command="{Binding EntryUnFocusedCommand}" EventName="EntryUnFocused" />
+
+                                </com:EntryContentView.Behaviors>
+                            </com:EntryContentView>
+                            <com:EntryContentView
+                                x:Name="EmailEntry"
+                                Margin="20,0,20,0"
+                                KeyboardType="Email"
+                                LeadingImage="ic_email_inactive.png"
+                                NextFocus="{x:Reference PhoneEntry}"
+                                Placeholder="{x:Static rs:AppResources.EnterEmail}"
+                                PlaceholderColor="#9f9f9f"
+                                VerticalOptions="CenterAndExpand"
+                                Value="{Binding Email}">
+                                <com:EntryContentView.Triggers>
+                                    <Trigger TargetType="com:EntryContentView" Property="IsActive" Value="True">
+                                        <Setter Property="LeadingImage" Value="ic_email_active" />
+                                    </Trigger>
+                                </com:EntryContentView.Triggers>
+                                <com:EntryContentView.Behaviors>
+                                    <behaviors:EventToCommandBehavior Command="{Binding EntryFocusedCommand}" EventName="EntryFocused" />
+                                    <behaviors:EventToCommandBehavior Command="{Binding EntryUnFocusedCommand}" EventName="EntryUnFocused" />
+
+                                </com:EntryContentView.Behaviors>
+                            </com:EntryContentView>
+                            <com:EntryContentView
+                                x:Name="PhoneEntry"
+                                Margin="20,0,20,0"
+                                KeyboardType="Numeric"
+                                LeadingImage="ic_phone_inactive"
+                                NextFocus="{x:Reference PasswordEntry}"
+                                Placeholder="{x:Static rs:AppResources.PhoneNumber}"
+                                PlaceholderColor="#9f9f9f"
+                                VerticalOptions="CenterAndExpand"
+                                Value="{Binding Phone}">
+                                <com:EntryContentView.Triggers>
+                                    <Trigger TargetType="com:EntryContentView" Property="IsActive" Value="True">
+                                        <Setter Property="LeadingImage" Value="ic_phone_active" />
+                                    </Trigger>
+                                </com:EntryContentView.Triggers>
+                                <com:EntryContentView.Behaviors>
+                                    <behaviors:EventToCommandBehavior Command="{Binding EntryFocusedCommand}" EventName="EntryFocused" />
+                                    <behaviors:EventToCommandBehavior Command="{Binding EntryUnFocusedCommand}" EventName="EntryUnFocused" />
+
+                                </com:EntryContentView.Behaviors>
+                            </com:EntryContentView>
+                            <com:EntryContentView
+                                x:Name="PasswordEntry"
+                                Margin="20,0,20,0"
+                                IsPassword="True"
+                                LeadingImage="ic_password_inactive.png"
+                                NextFocus="{x:Reference ConfirmPasswordEntry}"
+                                Placeholder="{x:Static rs:AppResources.EnterPassword}"
+                                PlaceholderColor="#9f9f9f"
+                                VerticalOptions="CenterAndExpand"
+                                Value="{Binding Password}">
+                                <com:EntryContentView.Triggers>
+                                    <Trigger TargetType="com:EntryContentView" Property="IsActive" Value="True">
+                                        <Setter Property="LeadingImage" Value="ic_password_active" />
+                                    </Trigger>
+                                </com:EntryContentView.Triggers>
+                                <com:EntryContentView.Behaviors>
+                                    <behaviors:EventToCommandBehavior Command="{Binding EntryFocusedCommand}" EventName="EntryFocused" />
+                                    <behaviors:EventToCommandBehavior Command="{Binding EntryUnFocusedCommand}" EventName="EntryUnFocused" />
+
+                                </com:EntryContentView.Behaviors>
+                            </com:EntryContentView>
+                            <com:EntryContentView
+                                x:Name="ConfirmPasswordEntry"
+                                Margin="20,0,20,20"
+                                IsPassword="True"
+                                LeadingImage="ic_password_inactive.png"
+                                NextFocus="{x:Reference PhoneEntry}"
+                                Placeholder="{x:Static rs:AppResources.ConfirmPassword}"
+                                PlaceholderColor="#9f9f9f"
+                                VerticalOptions="CenterAndExpand"
+                                Value="{Binding ConfirmPassword}">
+                                <com:EntryContentView.Triggers>
+                                    <Trigger TargetType="com:EntryContentView" Property="IsActive" Value="True">
+                                        <Setter Property="LeadingImage" Value="ic_password_active" />
+                                    </Trigger>
+                                </com:EntryContentView.Triggers>
+                                <com:EntryContentView.Behaviors>
+                                    <behaviors:EventToCommandBehavior Command="{Binding EntryFocusedCommand}" EventName="EntryFocused" />
+                                    <behaviors:EventToCommandBehavior Command="{Binding EntryUnFocusedCommand}" EventName="EntryUnFocused" />
+
+                                </com:EntryContentView.Behaviors>
+                            </com:EntryContentView>
+
+                            <Button
+                                Margin="20,0,20,20"
+                                BackgroundColor="#FF375E"
+                                Command="{Binding RegisterCommand}"
+                                FontFamily="STCForwardMedium"
+                                FontSize="18"
+                                HeightRequest="70"
+                                Text="{x:Static rs:AppResources.RegisterNow}"
+                                TextColor="White"
+                                VerticalOptions="End" />
+                            <BoxView HeightRequest="200" IsVisible="{Binding KeyboardFoucsed}" />
+                        </StackLayout>
+
+                    </ScrollView>
+                </StackLayout>
+            </com:BasePageContentView.AppConntentView>
+        </com:BasePageContentView>
+
+    </ContentPage.Content>
+</ContentPage>

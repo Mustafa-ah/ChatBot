@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="STC.Common.CommonControlls.OTPContentView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:STC.Common.CommonControlls"
+    x:Name="OTPControl">
+    <ContentView.Content>
+        <StackLayout Spacing="1">
+            <controls:BorderlessEntry
+                x:Name="EntryControll"
+                FontFamily="STCForwardRegular"
+                FontSize="26"
+                HorizontalOptions="FillAndExpand"
+                HorizontalTextAlignment="Center"
+                IsOTP="True"
+                Keyboard="Numeric"
+                MaxLength="1"
+                EditingChanged="EntryControll_EditingChanged"
+                Delete="EntryControll_Delete"
+                TextColor="{StaticResource ActiveControllColor}"
+                ReturnType="Next"
+                VerticalOptions="End"
+                Text="{Binding OTPDigit, Source={x:Reference OTPControl}}"
+                WidthRequest="40" />
+            <StackLayout
+                BackgroundColor="{StaticResource Key=InActiveControllColor}"
+                HeightRequest="2"
+                HorizontalOptions="FillAndExpand">
+                <StackLayout.Triggers>
+                    <MultiTrigger TargetType="StackLayout">
+                        <MultiTrigger.Conditions>
+                            <BindingCondition Binding="{Binding Source={x:Reference EntryControll}, Path=Text.Length}" Value="1" />
+                        </MultiTrigger.Conditions>
+                        <Setter Property="BackgroundColor" Value="{StaticResource ActiveControllColor}" />
+                    </MultiTrigger>
+                </StackLayout.Triggers>
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="STC.Views.ProfilePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="http://prismlibrary.com"
+    xmlns:com="clr-namespace:STC.Common.CommonControlls;assembly=STC.Common"
+    xmlns:rs="clr-namespace:STC.Resources"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+       xmlns:ando="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    NavigationPage.HasNavigationBar="False">
+    <com:BasePageContentView Lang="{Binding Lang}">
+        <com:BasePageContentView.AppConntentView>
+            <ScrollView BackgroundColor="White">
+                <StackLayout Margin="20,20,20,0" Spacing="20">
+
+                    <StackLayout Margin="0,20,0,20" Orientation="Horizontal">
+
+                        <com:LocalizedImage
+                            HeightRequest="20"
+                            HorizontalOptions="StartAndExpand"
+                            Lang="{Binding Lang}"
+                            Source="BackArrowPurpule"
+                            VerticalOptions="Start"
+                            WidthRequest="20">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ProfileBackCommand}" />
+                            </Image.GestureRecognizers>
+                        </com:LocalizedImage>
+                        <Label
+                            FontFamily="STCForwardBold"
+                            FontSize="17"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="{x:Static rs:AppResources.Profile}"
+                            TextColor="Black" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontFamily="STCForwardMedium"
+                            FontSize="16"
+                            HorizontalOptions="EndAndExpand"
+                            Text="{x:Static rs:AppResources.Save}"
+                            TextColor="Transparent">
+                            <!--<Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SaveCommand}" />
+                            </Label.GestureRecognizers>-->
+                        </Label>
+                    </StackLayout>
+                    <Grid
+                        HeightRequest="100"
+                        HorizontalOptions="Center"
+                        WidthRequest="100">
+                        <Frame
+                            Padding="0"
+                            BackgroundColor="Transparent"
+                            CornerRadius="50"
+                            HasShadow="False"
+                            IsClippedToBounds="True">
+                            <Image x:Name="imgcamara" Source="ic_user" />
+                        </Frame>
+                        <!--<Image
+                               HorizontalOptions="End"
+                            Source="ic_cam"
+                            VerticalOptions="End">
+    <Image.GestureRecognizers>
+        <TapGestureRecognizer
+                 Command="{Binding OpenCameraCommand}" />
+  </Image.GestureRecognizers>
+</Image>
+
+                             <Image
+                            HorizontalOptions="Start"
+                            Source="upload"
+                            VerticalOptions="End" >
+                                  <Image.GestureRecognizers>
+        <TapGestureRecognizer
+                 Command="{Binding OpenPickerCommand}" />
+  </Image.GestureRecognizers>
+                                 </Image>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenCameraCommand}" />
+                        </Grid.GestureRecognizers>-->
+                    </Grid>
+
+
+                    <StackLayout
+                        Grid.Row="2"
+                        Margin="0,20,0,0"
+                        Spacing="20">
+                        <Label
+                            FontAttributes="Bold"
+                            FontFamily="STCForwardbold"
+                            FontSize="17"
+                            Text="{x:Static rs:AppResources.AccountDetails}"
+                            TextColor="Black" />
+                        <BoxView BackgroundColor="#d9d8de" HeightRequest="1" />
+                        <StackLayout Margin="20,10,20,10">
+                            <StackLayout Orientation="Vertical">
+                                <Label
+                                    FontFamily="STCForwardRegular"
+                                    FontSize="16"
+                                    HorizontalOptions="StartAndExpand"
+                                    Text="{x:Static rs:AppResources.FullName}"
+                                    TextColor="Black" />
+                                <Grid
+                                    ColumnDefinitions="*,50"
+                                    ColumnSpacing="5"
+                                    HorizontalOptions="FillAndExpand">
+                                    <com:BorderlessEntry
+                                        ios:VisualElement.IsLegacyColorModeEnabled="False"
+                                        ando:VisualElement.IsLegacyColorModeEnabled="False"
+                                        Grid.Column="0"
+                                        FontFamily="STCForwardRegular"
+                                        FontSize="16"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="End"
+                                        IsEnabled="False"
+                                        IsVisible="True"
+                                        Placeholder="{x:Static rs:AppResources.FullName}"
+                                        PlaceholderColor="#5D0095"
+                                        Text="{Binding Name}"
+                                         TextColor="{AppThemeBinding Light=#5D0095, Dark=#5D0095}">
+
+                                        <com:BorderlessEntry.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding NameEnable}"
+                                                TargetType="com:BorderlessEntry"
+                                                Value="true">
+                                                <Setter Property="IsVisible" Value="False" />
+                                            </DataTrigger>
+                                            <MultiTrigger TargetType="com:BorderlessEntry">
+                                                <MultiTrigger.Conditions>
+                                                    <BindingCondition Binding="{Binding Lang}" Value="2" />
+                                                    <BindingCondition Binding="{Binding IsArabicName}" Value="true" />
+                                                </MultiTrigger.Conditions>
+                                                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                                            </MultiTrigger>
+                                            <MultiTrigger TargetType="com:BorderlessEntry">
+                                                <MultiTrigger.Conditions>
+                                                    <BindingCondition Binding="{Binding Lang}" Value="1" />
+                                                    <BindingCondition Binding="{Binding IsArabicName}" Value="true" />
+                                                </MultiTrigger.Conditions>
+                                                <Setter Property="HorizontalTextAlignment" Value="End" />
+                                            </MultiTrigger>
+                                            <MultiTrigger TargetType="com:BorderlessEntry">
+                                                <MultiTrigger.Conditions>
+                                                    <BindingCondition Binding="{Binding Lang}" Value="1" />
+                                                    <BindingCondition Binding="{Binding IsEnglishName}" Value="true" />
+                                                </MultiTrigger.Conditions>
+                                                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                                            </MultiTrigger>
+
+                                        </com:BorderlessEntry.Triggers>
+
+                                        <com:BorderlessEntry.Behaviors>
+                                            <behaviors:EventToCommandBehavior Command="{Binding EntryFocusedCommand}" EventName="Focused" />
+                                            <behaviors:EventToCommandBehavior Command="{Binding EntryUnFocusedCommand}" EventName="Unfocused" />
+
+                                        </com:BorderlessEntry.Behaviors>
+                                    </com:BorderlessEntry>
+                                    <com:BorderlessEntry
+                                          ios:VisualElement.IsLegacyColorModeEnabled="False"
+                                        ando:VisualElement.IsLegacyColorModeEnabled="False"
+                                        Grid.Column="0"
+                                        FontFamily="STCForwardRegular"
+                                        FontSize="16"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="Start"
+                                        IsVisible="False"
+                                        Placeholder="{x:Static rs:AppResources.FullName}"
+                                        PlaceholderColor="#5D0095"
+                                        Text="{Binding Name}"
+                                        TextColor="{AppThemeBinding Light=#5D0095, Dark=#5D0095}">
+                                        <com:BorderlessEntry.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding NameEnable}"
+                                                TargetType="com:BorderlessEntry"
+                                                Value="true">
+                                                <Setter Property="IsVisible" Value="True" />
+                                                <Setter Property="IsEnabled" Value="True" />
+                                            </DataTrigger>
+                                            <DataTrigger
+                                                Binding="{Binding NameEnable}"
+                                                TargetType="com:BorderlessEntry"
+                                                Value="false">
+                                                <Setter Property="IsVisible" Value="False" />
+                                                <Setter Property="IsEnabled" Value="False" />
+                                            </DataTrigger>
+                                        </com:BorderlessEntry.Triggers>
+                                        <com:BorderlessEntry.Behaviors>
+                                            <behaviors:EventToCommandBehavior Command="{Binding EntryFocusedCommand}" EventName="Focused" />
+                                            <behaviors:EventToCommandBehavior Command="{Binding EntryUnFocusedCommand}" EventName="Unfocused" />
+
+                                        </com:BorderlessEntry.Behaviors>
+                                    </com:BorderlessEntry>
+                                    <Image
+                                        Grid.Column="1"
+                                        Scale="1"
+                                        Source="NewEdit">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding EditNameCommand}" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+
+
+                                </Grid>
+
+
+                            </StackLayout>
+                            <StackLayout
+                                HorizontalOptions="EndAndExpand"
+                                IsVisible="{Binding NameEditStackVisability}"
+                                Orientation="Horizontal"
+                                Spacing="4">
+                                <Image Scale="1" Source="Check.png">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding VerifyEditNameCommand}" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Image Scale="1" Source="Delete.png">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding CancelEditNameCommand}" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+
+                            </StackLayout>
+
+                        </StackLayout>
+
+
+                        <BoxView BackgroundColor="#d9d8de" HeightRequest="1" />
+                        <StackLayout Margin="20,10,20,10">
+                            <StackLayout Orientation="Vertical">
+                                <Label
+                                    FontFamily="STCForwardRegular"
+                                    FontSize="16"
+                                    HorizontalOptions="StartAndExpand"
+                                    Text="{x:Static rs:AppResources.Email}"
+                                    TextColor="Black" />
+                                <Grid
+                                    ColumnDefinitions="*,50"
+                                    ColumnSpacing="5"
+                                    HorizontalOptions="FillAndExpand">
+                                    <com:BorderlessEntry
+                                        ios:VisualElement.IsLegacyColorModeEnabled="False"
+                                        ando:VisualElement.IsLegacyColorModeEnabled="False"
+                                        Grid.Column="0"
+                                        FontFamily="STCForwardRegular"
+                                        FontSize="16"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="Start"
+                                        IsVisible="False"
+                                        Placeholder="{x:Static rs:AppResources.Email}"
+                                        PlaceholderColor="#5D0095"
+                                        Text="{Binding Email}"
+                                         TextColor="{AppThemeBinding Light=#5D0095, Dark=#5D0095}">
+                                        <com:BorderlessEntry.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding EmailEnable}"
+                                                TargetType="com:BorderlessEntry"
+                                                Value="true">
+                                                <Setter Property="IsVisible" Value="True" />
+                                                <Setter Property="IsEnabled" Value="True" />
+                                            </DataTrigger>
+                                            <DataTrigger
+                                                Binding="{Binding EmailEnable}"
+                                                TargetType="com:BorderlessEntry"
+                                                Value="false">
+                                                <Setter Property="IsVisible" Value="False" />
+                                                <Setter Property="IsEnabled" Value="False" />
+                                            </DataTrigger>
+                                        </com:BorderlessEntry.Triggers>
+                                        <com:BorderlessEntry.Behaviors>
+                                            <behaviors:EventToCommandBehavior Command="{Binding EntryFocusedCommand}" EventName="Focused" />
+                                            <behaviors:EventToCommandBehavior Command="{Binding EntryUnFocusedCommand}" EventName="Unfocused" />
+
+                                        </com:BorderlessEntry.Behaviors>
+                                    </com:BorderlessEntry>
+                                    <com:BorderlessEntry
+                                                ios:VisualElement.IsLegacyColorModeEnabled="False"
+                                        ando:VisualElement.IsLegacyColorModeEnabled="False"
+                                        Grid.Column="0"
+                                        FontFamily="STCForwardRegular"
+                                        FontSize="16"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="End"
+                                        IsEnabled="False"
+                                        IsVisible="True"
+                                        Placeholder="{x:Static rs:AppResources.Email}"
+                                        PlaceholderColor="#5D0095"
+                                        Text="{Binding Email}"
+                                               TextColor="{AppThemeBinding Light=#5D0095, Dark=#5D0095}">
+                                        <com:BorderlessEntry.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding EmailEnable}"
+                                                TargetType="com:BorderlessEntry"
+                                                Value="true">
+                                                <Setter Property="IsVisible" Value="False" />
+                                            </DataTrigger>
+                                            <DataTrigger
+                                                Binding="{Binding Lang}"
+                                                TargetType="com:BorderlessEntry"
+                                                Value="1">
+                                                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                                            </DataTrigger>
+                                        </com:BorderlessEntry.Triggers>
+                                        <com:BorderlessEntry.Behaviors>
+                                            <behaviors:EventToCommandBehavior Command="{Binding EntryFocusedCommand}" EventName="Focused" />
+                                            <behaviors:EventToCommandBehavior Command="{Binding EntryUnFocusedCommand}" EventName="Unfocused" />
+
+                                        </com:BorderlessEntry.Behaviors>
+                                    </com:BorderlessEntry>
+                                    <Image
+                                        Grid.Column="1"
+                                        Scale="1"
+                                        Source="NewEdit.png">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding EditEmailCommand}" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+
+                                </Grid>
+
+
+                            </StackLayout>
+                            <StackLayout
+                                HorizontalOptions="EndAndExpand"
+                                IsVisible="{Binding EmailEditStackVisability}"
+                                Orientation="Horizontal"
+                                Spacing="4">
+                                <Image Scale="1" Source="Check.png">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding VerifyEditEmailCommand}" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Image Scale="1" Source="Delete.png">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding CancelEditEmailCommand}" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+
+                            </StackLayout>
+                        </StackLayout>
+
+                        <BoxView BackgroundColor="#d9d8de" HeightRequest="1" />
+                        <StackLayout Margin="20,10,20,10">
+                            <StackLayout Orientation="Vertical">
+                                <Label
+                                    FontFamily="STCForwardRegular"
+                                    FontSize="16"
+                                    HorizontalOptions="StartAndExpand"
+                                    Text="{x:Static rs:AppResources.PhoneNumber}"
+                                    TextColor="Black" />
+                                <Grid
+                                    ColumnDefinitions="*,50"
+                                    ColumnSpacing="5"
+                                    HorizontalOptions="FillAndExpand">
+                                    <com:BorderlessEntry
+                                                ios:VisualElement.IsLegacyColorModeEnabled="False"
+                                        ando:VisualElement.IsLegacyColorModeEnabled="False"
+                                        Grid.Column="0"
+                                        FontFamily="STCForwardRegular"
+                                        FontSize="16"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="Start"
+                                        IsVisible="False"
+                                        Keyboard="Telephone"
+                                        Placeholder="{x:Static rs:AppResources.PhoneNumber}"
+                                        PlaceholderColor="#5D0095"
+                                        Text="{Binding Mobile}"
+                                         TextColor="{AppThemeBinding Light=#5D0095, Dark=#5D0095}">
+                                        <com:BorderlessEntry.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding MobileEnable}"
+                                                TargetType="com:BorderlessEntry"
+                                                Value="true">
+                                                <Setter Property="IsVisible" Value="True" />
+                                                <Setter Property="IsEnabled" Value="True" />
+
+                                            </DataTrigger>
+                                            <DataTrigger
+                                                Binding="{Binding MobileEnable}"
+                                                TargetType="com:BorderlessEntry"
+                                                Value="false">
+                                                <Setter Property="IsVisible" Value="False" />
+                                                <Setter Property="IsEnabled" Value="False" />
+                                            </DataTrigger>
+                                        </com:BorderlessEntry.Triggers>
+                                        <com:BorderlessEntry.Behaviors>
+                                            <behaviors:EventToCommandBehavior Command="{Binding EntryFocusedCommand}" EventName="Focused" />
+                                            <behaviors:EventToCommandBehavior Command="{Binding EntryUnFocusedCommand}" EventName="Unfocused" />
+
+                                        </com:BorderlessEntry.Behaviors>
+                                    </com:BorderlessEntry>
+                                    <com:BorderlessEntry
+                                                ios:VisualElement.IsLegacyColorModeEnabled="False"
+                                        ando:VisualElement.IsLegacyColorModeEnabled="False"
+                                        Grid.Column="0"
+                                        FontFamily="STCForwardRegular"
+                                        FontSize="16"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="End"
+                                        IsEnabled="False"
+                                        IsVisible="True"
+                                        Keyboard="Telephone"
+                                        Placeholder="{x:Static rs:AppResources.PhoneNumber}"
+                                        PlaceholderColor="#5D0095"
+                                        Text="{Binding Mobile}"
+                                        TextColor="{AppThemeBinding Light=#5D0095, Dark=#5D0095}">
+                                        <com:BorderlessEntry.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding MobileEnable}"
+                                                TargetType="com:BorderlessEntry"
+                                                Value="true">
+                                                <Setter Property="IsVisible" Value="False" />
+                                            </DataTrigger>
+                                            <DataTrigger
+                                                Binding="{Binding Lang}"
+                                                TargetType="com:BorderlessEntry"
+                                                Value="1">
+                                                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                                            </DataTrigger>
+                                        </com:BorderlessEntry.Triggers>
+                                        <com:BorderlessEntry.Behaviors>
+                                            <behaviors:EventToCommandBehavior Command="{Binding EntryFocusedCommand}" EventName="Focused" />
+                                            <behaviors:EventToCommandBehavior Command="{Binding EntryUnFocusedCommand}" EventName="Unfocused" />
+
+                                        </com:BorderlessEntry.Behaviors>
+                                    </com:BorderlessEntry>
+                                    <Image Scale="1" Source="NewEdit"  Grid.Column="1">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding EditMobileCommand}" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+
+                                </Grid>
+
+
+                            </StackLayout>
+
+                            <StackLayout
+                                HorizontalOptions="EndAndExpand"
+                                IsVisible="{Binding MobileEditStackVisability}"
+                                Orientation="Horizontal"
+                                Spacing="4">
+                                <Image Scale="1" Source="Check.png">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding VerifyEditMobileCommand}" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Image Scale="1" Source="Delete.png">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding CancelEditMobileCommand}" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+
+                            </StackLayout>
+                        </StackLayout>
+
+                        <BoxView BackgroundColor="#d9d8de" HeightRequest="1" />
+
+
+                        <StackLayout
+                            Grid.Row="2"
+                            Margin="0,0,0,20"
+                            Spacing="20">
+                            <Label
+                                FontAttributes="Bold"
+                                FontFamily="STCForwardMedium"
+                                FontSize="17"
+                                HorizontalOptions="StartAndExpand"
+                                Text="{x:Static rs:AppResources.ChangePassword}"
+                                TextColor="#FF0059">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ChangePasswordCommand}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+
+                        </StackLayout>
+
+                    </StackLayout>
+                    <BoxView HeightRequest="300" IsVisible="{Binding KeyboardFoucsed}" />
+                </StackLayout>
+            </ScrollView>
+        </com:BasePageContentView.AppConntentView>
+    </com:BasePageContentView>
+</ContentPage>

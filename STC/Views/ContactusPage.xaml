@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="STC.Views.ContactusPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:com="clr-namespace:STC.Common.CommonControlls;assembly=STC.Common"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:rs="clr-namespace:STC.Resources"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    NavigationPage.HasNavigationBar="False">
+    <com:BasePageContentView Lang="{Binding Lang}">
+        <com:BasePageContentView.AppConntentView>
+            <StackLayout BackgroundColor="White">
+                <com:HeaderContentView
+                    Title="{x:Static rs:AppResources.ContactUs}"
+                    Margin="20,20,20,20"
+                    FontSize="16"
+                    Lang="{Binding Lang}"
+                    LeadingImageCommand="{Binding BackCommand}"
+                    TextColor="#242424" />
+                <ScrollView VerticalOptions="FillAndExpand">
+                    <Grid  VerticalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+
+                        </Grid.RowDefinitions>
+
+
+
+                        <StackLayout
+                            Grid.Row="0"
+                            Margin="20,0,20,0"
+                            VerticalOptions="Center">
+                            <Image Aspect="AspectFit" Source="BitmapContactus.png" />
+
+                        </StackLayout>
+                        <BoxView Grid.Row="1" BackgroundColor="#572489" />
+                        <Image
+                            Grid.Row="1"
+                            Aspect="AspectFill"
+                            Source="ContactBackground.png" />
+                        <StackLayout Grid.Row="1" Spacing="30">
+                            <BoxView BackgroundColor="Transparent" HeightRequest="20" />
+
+                            <StackLayout
+                                Margin="50,0,50,0"
+                                Orientation="Horizontal"
+                                Spacing="20">
+                                <Image Source="Calls.png" />
+                                <StackLayout>
+                                    <Label
+                                        FontFamily="STCForwardRegular"
+                                        FontSize="16"
+                                        Text="{x:Static rs:AppResources.Mobile}"
+                                        TextColor="White" />
+                                    <Label
+                                        FontFamily="STCForwardRegular"
+                                        FontSize="16"
+                                        Text="{Binding Phone}"
+                                        TextColor="White" />
+                                </StackLayout>
+
+                            </StackLayout>
+
+                            <StackLayout
+                                Margin="50,0,50,0"
+                                Orientation="Horizontal"
+                                Spacing="20">
+                                <Image Source="Hotline.png" />
+                                <StackLayout>
+                                    <Label
+                                        FontFamily="STCForwardRegular"
+                                        FontSize="16"
+                                        Text="{x:Static rs:AppResources.Hotline}"
+                                        TextColor="White" />
+                                    <Label
+                                        FontFamily="STCForwardRegular"
+                                        FontSize="16"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Hotline}"
+                                        TextColor="White" />
+                                </StackLayout>
+
+                            </StackLayout>
+                            <StackLayout
+                                Margin="50,0,50,0"
+                                Orientation="Horizontal"
+                                Spacing="20">
+                                <Image Source="Emailicon.png" />
+                                <StackLayout>
+                                    <Label
+                                        FontFamily="STCForwardRegular"
+                                        FontSize="16"
+                                        Text="{x:Static rs:AppResources.Email}"
+                                        TextColor="White" />
+                                    <Label
+                                        FontFamily="STCForwardRegular"
+                                        FontSize="16"
+                                        Text="{Binding Email}"
+                                        TextColor="White" />
+                                </StackLayout>
+
+                            </StackLayout>
+                            <BoxView BackgroundColor="Transparent" HeightRequest="100" />
+
+                        </StackLayout>
+
+                    </Grid>
+
+                </ScrollView>
+
+            </StackLayout>
+        </com:BasePageContentView.AppConntentView>
+    </com:BasePageContentView>
+</ContentPage>

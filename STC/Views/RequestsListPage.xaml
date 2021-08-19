@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="STC.Views.RequestsListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:STC.Behaviors"
+    xmlns:com="clr-namespace:STC.Common.CommonControlls;assembly=STC.Common"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:rs="clr-namespace:STC.Resources"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    BackgroundColor="#53008f"
+    NavigationPage.HasNavigationBar="False">
+    <com:BasePageContentView Lang="{Binding Lang}">
+
+        <com:BasePageContentView.AppConntentView>
+
+            <StackLayout Margin="20,30,20,20">
+
+                <com:HeaderContentView
+                    Title="{x:Static rs:AppResources.YourRequests}"
+                    FontSize="20"
+                    Lang="{Binding Lang}"
+                    LeadingImage="BackArrow"
+                    LeadingImageCommand="{Binding BackCommand}"
+                    TextColor="White" />
+
+                <ListView
+                    x:Name="RequestsListView"
+                    BackgroundColor="#53008f"
+                    HasUnevenRows="True"
+                    IsVisible="{Binding IsData}"
+                    ItemsSource="{Binding Requests}"
+                    VerticalOptions="FillAndExpand">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame
+                                    x:Name="FrameCell"
+                                    Margin="0,10,0,12"
+                                    Padding="0,30,0,30"
+                                    BackgroundColor="White"
+                                    CornerRadius="5">
+                                    <StackLayout
+                                        Margin="15,0,15,0"
+                                        BackgroundColor="White"
+                                        Orientation="Horizontal"
+                                        Spacing="10">
+
+                                        <Image Aspect="AspectFit" Source="RequestIcon" />
+
+                                        <StackLayout Spacing="0">
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontFamily="STCForwardRegular"
+                                                FontSize="16"
+                                                Text="{Binding number}"
+                                                TextColor="#313840" />
+                                            <Label
+                                                FontFamily="STCForwardMedium"
+                                                FontSize="15"
+                                                Text="{x:Static rs:AppResources.ViewDetails}"
+                                                TextColor="#68259d" />
+
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            HeightRequest="40"
+                                            HorizontalOptions="EndAndExpand"
+                                            VerticalOptions="Center"
+                                            WidthRequest="85">
+                                            <Frame
+                                                Padding="0"
+                                                BackgroundColor="{Binding requestStatusColor}"
+                                                CornerRadius="12"
+                                                HasShadow="False"
+                                                HeightRequest="24"
+                                                VerticalOptions="Center">
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontFamily="STCForwardBold"
+                                                    FontSize="12"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{Binding requestStatus}"
+                                                    TextColor="White"
+                                                    VerticalTextAlignment="Center" />
+                                            </Frame>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            BindingContext="{Binding Source={x:Reference RequestsListView}, Path=BindingContext}"
+                                            Command="{Binding OpenRequestDetailsCommand}"
+                                            CommandParameter="{Binding Source={x:Reference FrameCell}, Path=BindingContext}" />
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Behaviors>
+                        <behaviors:DisableListItemSelectionBehavior />
+                    </ListView.Behaviors>
+                </ListView>
+                <Label
+                    BackgroundColor="#53008f"
+                    FontFamily="STCForwardRegular"
+                    FontSize="17"
+                    HorizontalOptions="FillAndExpand"
+                    HorizontalTextAlignment="Center"
+                    IsVisible="{Binding IsNoData}"
+                    Text="{x:Static rs:AppResources.NoData}"
+                    TextColor="White"
+                    VerticalOptions="FillAndExpand"
+                    VerticalTextAlignment="Center" />
+
+
+                <Button
+                    BackgroundColor="Transparent"
+                    Command="{Binding OpenNewRequestCommand}"
+                    FontFamily="STCForwardMedium"
+                    FontSize="16"
+                    Text="{x:Static rs:AppResources.NewRequest}"
+                    TextColor="White" />
+
+            </StackLayout>
+        </com:BasePageContentView.AppConntentView>
+    </com:BasePageContentView>
+</ContentPage>

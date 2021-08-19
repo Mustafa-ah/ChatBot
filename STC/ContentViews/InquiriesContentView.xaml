@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="STC.ContentViews.InquiriesContentView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:rs="clr-namespace:STC.Resources">
+    <ContentView.Content Margin="20">
+        <Grid x:Name="RootGrid" RowDefinitions="40,30,*,56,56,56" RowSpacing="20">
+                <Label
+                    Grid.Row="0"
+                    FontAttributes="Bold"
+                    FontSize="28"
+                    Text="{x:Static rs:AppResources.Inquiries}"
+                    TextColor="White" />
+                <Label
+                    Grid.Row="1"
+                    FontFamily="STCForwardRegular"
+                    FontSize="18"
+                    Text="{x:Static rs:AppResources.InquiriesTabQuote}"
+                    TextColor="White" />
+                <Image Grid.Row="2" Source="InqueriesTab.png" />
+                <Button
+                    Grid.Row="4"
+                    BackgroundColor="Transparent"
+                    BorderColor="White"
+                    BorderWidth="2"
+                    Clicked="Button_Clicked"
+                    FontFamily="STCForwardMedium"
+                    FontSize="18"
+                    HeightRequest="60"
+                    Text="{x:Static rs:AppResources.CheckFaq}"
+                    TextColor="White" />
+                <!--<Button
+                    Grid.Row="4"
+                    BackgroundColor="White"
+                    BorderColor="White"
+                    BorderWidth="2"
+                    Command="{Binding OpenNewInquiryCommand}"
+                    FontFamily="STCForwardMedium"
+                    FontSize="18"
+                    HeightRequest="60"
+                    Text="{x:Static rs:AppResources.NewInquiry}"
+                    TextColor="#5D0095" />-->
+                <Button
+                    Grid.Row="5"
+                    BackgroundColor="Transparent"
+                    BorderColor="Gray"
+                    BorderWidth="2"
+                    Command="{Binding OpenInquiriesCommand}"
+                    FontFamily="STCForwardMedium"
+                    FontSize="16"
+                    HeightRequest="60"
+                    Text="{x:Static rs:AppResources.SeeYourInquiries}"
+                    TextColor="#FF375E" />
+            </Grid>
+    </ContentView.Content>
+</ContentView>

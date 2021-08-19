@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="STC.ContentViews.HomeContentView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:commoncontrolls="clr-namespace:STC.Common.CommonControlls;assembly=STC.Common"
+    xmlns:rs="clr-namespace:STC.Resources">
+    <ContentView.Content>
+        <Grid RowDefinitions="*,70">
+            <Grid
+                x:Name="RootGrid"
+                Grid.Row="0"
+                Margin="20,20,20,0"
+                RowDefinitions="50,80,Auto,*,Auto,*"
+                RowSpacing="20">
+                <StackLayout Grid.Row="0" Orientation="Horizontal">
+
+                    <AbsoluteLayout
+                        HeightRequest="50"
+                        HorizontalOptions="StartAndExpand"
+                        WidthRequest="50">
+                        <Image
+                            AbsoluteLayout.LayoutBounds="0,0,1,1"
+                            AbsoluteLayout.LayoutFlags="All"
+                            HeightRequest="50"
+                            Source="ic_notifications"
+                            WidthRequest="50" />
+                        <BoxView
+                            AbsoluteLayout.LayoutBounds="0,0,14,14"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            BackgroundColor="Red"
+                            CornerRadius="7"
+                            IsVisible="{Binding HasNewNotifications}" />
+                        <AbsoluteLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenNotificationsCommand}" />
+                        </AbsoluteLayout.GestureRecognizers>
+                    </AbsoluteLayout>
+
+                    <StackLayout
+                        Padding="5"
+                        HeightRequest="50"
+                        HorizontalOptions="End"
+                        WidthRequest="50">
+                        <Image Source="ic_menu.png" VerticalOptions="Center" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Button_Clicked" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" Spacing="3">
+
+                    <Label
+                        x:Name="Greetings"
+                        FontFamily="STCForwardRegular"
+                        FontSize="16"
+                        TextColor="#FFFFFF" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="STCForwardBold"
+                        FontSize="28"
+                        Text="{Binding Name}"
+                        TextColor="#FFFFFF" />
+                </StackLayout>
+
+                <Frame
+                    Grid.Row="2"
+                    Padding="0"
+                    BackgroundColor="#1BCED8"
+                    CornerRadius="5"
+                    HasShadow="True"
+                    VerticalOptions="CenterAndExpand">
+                    <Grid>
+                        <Image Aspect="Fill" Source="InquriesBackground.png" />
+                        <StackLayout Margin="10" Orientation="Horizontal">
+
+                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center" Spacing="0">
+                                <Label
+                                    FontFamily="STCForwardBold"
+                                    FontSize="24"
+                                    Text="{x:Static rs:AppResources.Inquiries}"
+                                    TextColor="#FFFFFF" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontFamily="STCForwardRegular"
+                                    FontSize="18"
+                                    Text="{x:Static rs:AppResources.InquiriesHomeQuote}"
+                                    TextColor="#FFFFFF" />
+                            </StackLayout>
+                            <commoncontrolls:LocalizedImage
+                                BackgroundColor="Transparent"
+                                HorizontalOptions="End"
+                                InputTransparent="True"
+                                Lang="{Binding Lang}"
+                                Source="ic_Go_Button.png" />
+                        </StackLayout>
+                    </Grid>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenInquiriesCommand}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <Frame
+                    Grid.Row="4"
+                    Padding="0"
+                    BackgroundColor="#00C48C"
+                    CornerRadius="5"
+                    HasShadow="True"
+                    VerticalOptions="CenterAndExpand">
+                    <Grid>
+                        <Image Aspect="Fill" Source="RequestsBackground.png" />
+                        <StackLayout Margin="10" Orientation="Horizontal">
+
+                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center" Spacing="0">
+                                <Label
+                                    FontFamily="STCForwardBold"
+                                    FontSize="24"
+                                    Text="{x:Static rs:AppResources.Requests}"
+                                    TextColor="#FFFFFF" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontFamily="STCForwardRegular"
+                                    FontSize="18"
+                                    Text="{x:Static rs:AppResources.RequestHomeQuote}"
+                                    TextColor="#FFFFFF" />
+                            </StackLayout>
+                            <commoncontrolls:LocalizedImage
+                                BackgroundColor="Transparent"
+                                HorizontalOptions="End"
+                                InputTransparent="True"
+                                Lang="{Binding Lang}"
+                                Source="ic_Go_Button.png" />
+                        </StackLayout>
+                    </Grid>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenRequestsListCommand}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+
+            </Grid>
+            <Grid Grid.Row="1" Margin="30,0,30,5">
+                <commoncontrolls:LocalizedImage
+                    Grid.Row="0"
+                    Aspect="Fill"
+                    HorizontalOptions="EndAndExpand"
+                    Lang="{Binding Lang}"
+                    Source="RectangleFrame.png"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="200" />
+                <Label
+                    Grid.Row="0"
+                    FontFamily="STCForwardRegular"
+                    FontSize="16"
+                    HorizontalOptions="EndAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Text="{x:Static rs:AppResources.HowCanHelp}"
+                    TextColor="#FFFFFF"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="200" />
+            </Grid>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

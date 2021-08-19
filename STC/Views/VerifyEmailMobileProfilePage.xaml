@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="STC.Views.VerifyEmailMobileProfilePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:com="clr-namespace:STC.Common.CommonControlls;assembly=STC.Common"
+    xmlns:rs="clr-namespace:STC.Resources"
+    NavigationPage.HasNavigationBar="False">
+    <com:BasePageContentView Lang="{Binding Lang}">
+        <com:BasePageContentView.AppConntentView>
+
+
+            <StackLayout BackgroundColor="White">
+                <com:HeaderContentView
+                    Margin="20,30,20,0"
+                    FontSize="16"
+                    Lang="{Binding Lang}"
+                    LeadingImageCommand="{Binding BackCommand}"
+                    TextColor="#242424" />
+
+
+                <ScrollView>
+
+
+                    <StackLayout Margin="20,0,20,0" Spacing="40">
+
+
+
+                        <StackLayout Spacing="30">
+                            <StackLayout
+                                HorizontalOptions="CenterAndExpand"
+                                Orientation="Horizontal"
+                                Spacing="5">
+                                <Label
+                                    FontFamily="STCForwardMedium"
+                                    FontSize="26"
+                                    Text="{x:Static rs:AppResources.Verify}"
+                                    TextColor="#53008F">
+                                    <Label.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding VerifyType}"
+                                            TargetType="Label"
+                                            Value="1">
+                                            <Setter Property="Text" Value="{x:Static rs:AppResources.VerifyEmail}" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <Label
+                                    FontFamily="STCForwardMedium"
+                                    FontSize="26"
+                                    Text="{Binding PhoneNumber}"
+                                    TextColor="#53008F">
+                                    <Label.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding VerifyType}"
+                                            TargetType="Label"
+                                            Value="1">
+                                            <Setter Property="IsVisible" Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger
+                                             Binding="{Binding VerifyType}"
+                                            TargetType="Label"
+                                            Value="2">
+                                            <Setter Property="FlowDirection" Value="LeftToRight" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+
+                            </StackLayout>
+                            <StackLayout>
+                                <Label
+                                    FontFamily="STCForwardRegular"
+                                    FontSize="18"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Text="{x:Static rs:AppResources.VerifySMSQuote}"
+                                    TextColor="#717171">
+                                    <Label.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding VerifyType}"
+                                            TargetType="Label"
+                                            Value="1">
+                                            <Setter Property="Text" Value="{x:Static rs:AppResources.VerifyEmailQuote}" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <StackLayout
+                                    HorizontalOptions="CenterAndExpand"
+                                    Orientation="Horizontal"
+                                    Spacing="2">
+                                    <Label
+                                        FontFamily="STCForwardRegular"
+                                        FontSize="18"
+                                        Text="{Binding PhoneNumber}"
+                                        TextColor="#717171">
+                                        <Label.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding VerifyType}"
+                                                TargetType="Label"
+                                                Value="1">
+                                                <Setter Property="Text" Value="{Binding Email}" />
+                                            </DataTrigger>
+                                             <DataTrigger
+                                             Binding="{Binding VerifyType}"
+                                            TargetType="Label"
+                                            Value="2">
+                                            <Setter Property="FlowDirection" Value="LeftToRight" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+
+                                    </Label>
+                                    <Label
+                                        FontFamily="STCForwardRegular"
+                                        FontSize="18"
+                                        Text="{x:Static rs:AppResources.WrongNumber}"
+                                        TextColor="#FF375E">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding OpenForgetPasswordPageCommand}" />
+                                        </Label.GestureRecognizers>
+                                        <Label.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding VerifyType}"
+                                                TargetType="Label"
+                                                Value="1">
+                                                <Setter Property="Text" Value="{x:Static rs:AppResources.Change}" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+
+                                </StackLayout>
+
+                            </StackLayout>
+                        </StackLayout>
+
+
+                        <StackLayout Margin="0,70,0,0">
+                            <Label
+                                FontFamily="STCForwardRegular"
+                                FontSize="18"
+
+                                       HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                Text="{x:Static rs:AppResources.EnterCodeMobile}"
+                                TextColor="#7E7C7C" >
+                                   <Label.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding VerifyType}"
+                                        TargetType="Label"
+                                        Value="1">
+                                        <Setter Property="Text" Value="{x:Static rs:AppResources.EnterCodeEmail}" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                                </Label>
+                            <StackLayout
+                                Margin="20"
+                                FlowDirection="LeftToRight"
+                                HorizontalOptions="Center"
+                                Orientation="Horizontal"
+                                Spacing="10">
+                                <com:OTPContentView
+                                    x:Name="OTP1"
+                                    EntryReturnCommand="{Binding VerifyCommand}"
+                                    NextEntry="{x:Reference OTP2}"
+                                    OTPDigit="{Binding Digit1}"
+                                      IsEnabled="{Binding OTPEnabled}"
+                                    Lang="{Binding Lang}"/>
+                                <com:OTPContentView
+                                    x:Name="OTP2"
+                                    EntryReturnCommand="{Binding VerifyCommand}"
+                                    NextEntry="{x:Reference OTP3}"
+                                    OTPDigit="{Binding Digit2}"
+                                    PreviousEntry="{x:Reference OTP1}"
+                                      IsEnabled="{Binding OTPEnabled}"
+                                    Lang="{Binding Lang}"/>
+                                <com:OTPContentView
+                                    x:Name="OTP3"
+                                    EntryReturnCommand="{Binding VerifyCommand}"
+                                    NextEntry="{x:Reference OTP4}"
+                                    OTPDigit="{Binding Digit3}"
+                                    PreviousEntry="{x:Reference OTP2}"
+                                      IsEnabled="{Binding OTPEnabled}"
+                                    Lang="{Binding Lang}"/>
+                                <com:OTPContentView
+                                    x:Name="OTP4"
+                                    EntryReturnCommand="{Binding VerifyCommand}"
+                                    OTPDigit="{Binding Digit4}"
+                                    PreviousEntry="{x:Reference OTP3}"
+                                      IsEnabled="{Binding OTPEnabled}"
+                                    Lang="{Binding Lang}"/>
+                            </StackLayout>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HorizontalOptions="CenterAndExpand"
+                            IsVisible="{Binding DidntRecive}"
+                            Orientation="Horizontal"
+                            Spacing="2">
+                            <Label
+                                FontFamily="STCForwardRegular"
+                                FontSize="18"
+                                Text="{x:Static rs:AppResources.DidntReceiveCode}"
+                                TextColor="#7E7C7C" />
+                            <Label
+                                FontFamily="STCForwardRegular"
+                                FontSize="18"
+                                Text="{x:Static rs:AppResources.SendAgain}"
+                                TextColor="#53008F">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ReSendCodeCommand}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+
+                        </StackLayout>
+                        <!--<BoxView BackgroundColor="Transparent" HeightRequest="50" />-->
+                        <Frame
+                            BackgroundColor="Transparent"
+                            BorderColor="#979797"
+                            HasShadow="False">
+
+                            <StackLayout Orientation="Horizontal">
+
+                                <StackLayout
+                                    HorizontalOptions="Start"
+                                    Orientation="Horizontal"
+                                    Spacing="13">
+
+                                    <Image Source="ic_phone_inactive.png">
+                                        <Image.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding VerifyType}"
+                                                TargetType="Image"
+                                                Value="1">
+                                                <Setter Property="Source" Value="ic_email_inactive.png" />
+                                            </DataTrigger>
+                                        </Image.Triggers>
+                                    </Image>
+                                    <Label
+                                        FontFamily="STCForwardRegular"
+                                        FontSize="14"
+                                        Text="{x:Static rs:AppResources.SMSCode}"
+                                        TextColor="#7E7C7C">
+                                        <Label.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding VerifyType}"
+                                                TargetType="Label"
+                                                Value="1">
+                                                <Setter Property="Text" Value="{x:Static rs:AppResources.Email}" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+
+                                </StackLayout>
+
+                                <Label
+                                    FontSize="14"
+                                    HorizontalOptions="EndAndExpand"
+                                    Text="{Binding TimeLeft}"
+                                    TextColor="#7E7C7C" />
+
+
+
+                            </StackLayout>
+                        </Frame>
+
+
+                    </StackLayout>
+
+                </ScrollView>
+            </StackLayout>
+
+        </com:BasePageContentView.AppConntentView>
+    </com:BasePageContentView>
+</ContentPage>

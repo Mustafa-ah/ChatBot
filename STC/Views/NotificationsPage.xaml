@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="STC.Views.NotificationsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:STC.Behaviors"
+    xmlns:com="clr-namespace:STC.Common.CommonControlls;assembly=STC.Common"
+    xmlns:conv="clr-namespace:STC.Converters"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:rs="clr-namespace:STC.Resources"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    BackgroundColor="#4a0089"
+    NavigationPage.HasNavigationBar="False"
+    x:Name="NotificationPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <conv:NotificationImageConverter x:Key="NotificationConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <com:BasePageContentView Lang="{Binding Lang}">
+        <com:BasePageContentView.AppConntentView>
+
+            <Grid Margin="20,0,20,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.10*" />
+                    <RowDefinition Height="0.15*" />
+                    <RowDefinition />
+
+
+                </Grid.RowDefinitions>
+                <Image
+                    Grid.Row="0"
+                    HeightRequest="24"
+                    HorizontalOptions="Start"
+                    Source="Close.png"
+                    WidthRequest="24">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <StackLayout Grid.Row="1" Orientation="Horizontal">
+
+                    <Label
+                        FontFamily="STCForwardRegular"
+                        FontSize="20"
+                        HorizontalOptions="Start"
+                        Text="{x:Static rs:AppResources.RecentNotifications}"
+                        TextColor="White"
+                        VerticalOptions="CenterAndExpand" />
+                    <Label
+                        FontFamily="STCForwardMedium"
+                        FontSize="16"
+                        HorizontalOptions="EndAndExpand"
+                        IsVisible="False"
+                        Text="{x:Static rs:AppResources.DismissAll}"
+                        TextColor="#FF2E56"
+                        VerticalOptions="End">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding RemoveNotificationsCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                </StackLayout>
+                <StackLayout
+                    Grid.Row="2"
+                    HorizontalOptions="Center"
+                    IsVisible="{Binding NotificationsDeleted}"
+                    Orientation="Horizontal"
+                    Spacing="20"
+                    VerticalOptions="Center">
+                    <Image Scale="1.5" Source="ic_chat" />
+                    <Label
+                        FontFamily="STCForwardRegular"
+                        FontSize="20"
+                        Text="{x:Static rs:AppResources.NoMessages}"
+                        TextColor="White" />
+                </StackLayout>
+                <ListView
+                    Grid.Row="2"
+                    BackgroundColor="Transparent"
+                    HasUnevenRows="True"
+                    ItemsSource="{Binding Notifications}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame
+                                    Margin="0,10,0,10"
+                                    Padding="0"
+                                    BackgroundColor="#ff375e"
+                                    CornerRadius="4">
+
+                                    <Grid IsClippedToBounds="False">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.3*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+
+                                        <Frame Grid.Column="0" BackgroundColor="Transparent">
+                                            <Image Source="{Binding NotificationType, Converter={StaticResource NotificationConverter}}" />
+
+                                        </Frame>
+
+                                        <Frame
+                                            Grid.Column="1"
+                                            Padding="10"
+                                            BackgroundColor="White">
+                                            <StackLayout Spacing="1">
+                                                <Label
+                                                    FontFamily="STCForwardRegular"
+                                                    FontSize="18"
+                                                    HorizontalOptions="Start"
+                                                    Text="{Binding Title}"
+                                                    TextColor="#FF0059"
+                                                    VerticalOptions="CenterAndExpand" />
+                                                <Label
+                                                    FontFamily="STCForwardRegular"
+                                                    FontSize="16"
+                                                    HorizontalOptions="Start"
+                                                    LineBreakMode="CharacterWrap"
+                                                    Text="{Binding Description}"
+                                                    TextColor="#2E2E2E"
+                                                    VerticalOptions="CenterAndExpand" />
+                                                <Label
+                                                    FontFamily="STCForwardRegular"
+                                                    FontSize="11"
+                                                    HeightRequest="30"
+                                                    HorizontalOptions="Start"
+                                                    Text="{Binding FormatedDate}"
+                                                    TextColor="#2E2E2E"
+                                                    VerticalOptions="CenterAndExpand" />
+
+                                            </StackLayout>
+                                        </Frame>
+
+                                    </Grid>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                                    Command="{Binding Source={x:Reference NotificationPage}, Path=BindingContext.OnNotificationClicked}"
+                                                    CommandParameter="{Binding .}">
+                                        </TapGestureRecognizer>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Behaviors>
+                        <behaviors:DisableListItemSelectionBehavior />
+                    </ListView.Behaviors>
+                </ListView>
+
+
+            </Grid>
+
+        </com:BasePageContentView.AppConntentView>
+    </com:BasePageContentView>
+</ContentPage>

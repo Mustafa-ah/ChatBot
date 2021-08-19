@@ -46,5 +46,17 @@ namespace STC.Common.Resources {
                 resourceCulture = value;
             }
         }
+        
+        internal static string NotConnected {
+            get {
+                return ResourceManager.GetString("NotConnected", resourceCulture);
+            }
+        }
+        
+        internal static string Ok {
+            get {
+                return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
     }
 }

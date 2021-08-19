@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="STC.ContentViews.FlyoutMenuContentView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:rs="clr-namespace:STC.Resources">
+    <ContentView.Content>
+          <Grid
+                ColumnDefinitions="0.5*, *"
+                ColumnSpacing="0"
+                RowDefinitions="0.30*, *,0.15*"
+                RowSpacing="1">
+
+                <StackLayout Grid.RowSpan="3" Grid.Column="0" />
+
+                <StackLayout
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    BackgroundColor="#FDFDFB">
+                    <StackLayout
+                        Margin="10"
+                        Orientation="Horizontal"
+                        VerticalOptions="FillAndExpand">
+                        <Image
+                            HeightRequest="50"
+                            Source="ic_user"
+                            VerticalOptions="Center"
+                            WidthRequest="50">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenProfileCommand}" Tapped="TapGestureRecognizer_Tapped" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label
+                            Margin="5,0,5,0"
+                            Padding="0,20,0,0"
+                            FontFamily="STCForwardRegular"
+                            FontSize="22"
+                            HorizontalOptions="StartAndExpand"
+                            Text="{Binding Name}"
+                            TextColor="Black"
+                            VerticalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenProfileCommand}" Tapped="TapGestureRecognizer_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <ImageButton
+                            Margin="5,0,5,0"
+                            Padding="3"
+                            BackgroundColor="Transparent"
+                            Clicked="ImageButton_Clicked"
+                            HeightRequest="25"
+                            Source="ic_close_gray"
+                            VerticalOptions="Center"
+                            WidthRequest="25" />
+                    </StackLayout>
+                    <StackLayout
+                        BackgroundColor="#ECECEC"
+                        HeightRequest="1"
+                        HorizontalOptions="FillAndExpand" />
+                </StackLayout>
+
+
+                <StackLayout
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    BackgroundColor="White"
+                    Spacing="0">
+
+                    <StackLayout
+                        BackgroundColor="White"
+                        HeightRequest="100"
+                        Orientation="Horizontal">
+                        <Image
+                            Margin="5"
+                            HeightRequest="30"
+                            Source="ic_about"
+                            WidthRequest="30" />
+                        <Label
+                            FontFamily="STCForwardRegular"
+                            FontSize="16"
+                            Text="{x:Static rs:AppResources.AboutUs}"
+                            TextColor="#646464"
+                            VerticalTextAlignment="Center" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenAboutUsCommand}" Tapped="TapGestureRecognizer_Tapped" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <StackLayout
+                        BackgroundColor="#ECECEC"
+                        HeightRequest="1"
+                        HorizontalOptions="FillAndExpand" />
+                    <StackLayout
+                        BackgroundColor="White"
+                        HeightRequest="100"
+                        Orientation="Horizontal">
+                        <Image
+                            Margin="5"
+                            HeightRequest="30"
+                            Source="ic_contact"
+                            WidthRequest="30" />
+                        <Label
+                            FontFamily="STCForwardRegular"
+                            FontSize="16"
+                            Text="{x:Static rs:AppResources.ContactUs}"
+                            TextColor="#646464"
+                            VerticalTextAlignment="Center" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenContactUsCommand}" Tapped="TapGestureRecognizer_Tapped" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <StackLayout
+                        BackgroundColor="#ECECEC"
+                        HeightRequest="1"
+                        HorizontalOptions="FillAndExpand" />
+                    <StackLayout
+                        Margin="0,20,0,50"
+                        HorizontalOptions="Center"
+                        Orientation="Horizontal">
+                        <Image Source="fb" IsVisible="{Binding IsFBAccount}">
+                            <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenFaceBook}" Tapped="TapGestureRecognizer_Tapped" />
+                    </Image.GestureRecognizers>
+                            </Image>
+                        <Image Source="tw" IsVisible="{Binding IsTWAccount}">
+                            <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenTwitter}" Tapped="TapGestureRecognizer_Tapped" />
+                    </Image.GestureRecognizers>
+                            </Image>
+                        <Image Source="in" IsVisible="{Binding IsInstAccount}">
+                            <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenInstagram}" Tapped="TapGestureRecognizer_Tapped" />
+                    </Image.GestureRecognizers>
+                            </Image>
+                        <Image Source="yo" IsVisible="{Binding IsYoAccount}">
+                            <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenYoutube}" Tapped="TapGestureRecognizer_Tapped" />
+                    </Image.GestureRecognizers>
+                            </Image>
+                    </StackLayout>
+                    <StackLayout
+                        Margin="0,0,0,10"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal">
+                        <Label
+                            FontFamily="STCForwardRegular"
+                            FontSize="14"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
+                            IsVisible="False"
+                            Text="{x:Static rs:AppResources.STCHomePage}"
+                            TextColor="Black"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            FontFamily="STCForwardRegular"
+                            FontSize="14"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
+                            IsVisible="False"
+                            Text="{x:Static rs:AppResources.PrivacyStatements}"
+                            TextColor="Black"
+                            VerticalTextAlignment="Center" />
+                    </StackLayout>
+                    <!--<Grid BackgroundColor="White" RowSpacing="5" VerticalOptions="FillAndExpand" RowDefinitions="*,*,*,30" ColumnDefinitions="*,*,*,*">
+                        <Image Grid.Row="1" Grid.Column="0" Aspect="AspectFit" Source="fb"/>
+                        <Image Grid.Row="1" Grid.Column="1"  Source="tw"/>
+                        <Image Grid.Row="1" Grid.Column="2"  Source="in"/>
+                        <Image Grid.Row="1" Grid.Column="3"  Source="yo"/>
+
+                     <Label Grid.Row="2" VerticalTextAlignment="End" Grid.Column="0" Grid.ColumnSpan="2" FontFamily="STCForwardRegular" TextColor="Black" FontSize="14" Text="STC Home Page"/>
+                     <Label Grid.Row="2" VerticalTextAlignment="End"  Grid.Column="2" Grid.ColumnSpan="2" FontFamily="STCForwardRegular" TextColor="Black" FontSize="14" Text="Privacy Statments"/>
+                </Grid>-->
+                </StackLayout>
+
+
+                <StackLayout
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    BackgroundColor="#FDFDFB"
+                    Orientation="Horizontal">
+                    <Image
+                        Margin="5"
+                        HeightRequest="30"
+                        Source="ic_preference"
+                        VerticalOptions="Center"
+                        WidthRequest="30" />
+                    <Label
+                        FontFamily="STCForwardRegular"
+                        FontSize="16"
+                        Text="{x:Static rs:AppResources.Settings}"
+                        TextColor="#646464"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenSettingsCommand}" Tapped="TapGestureRecognizer_Tapped" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+            </Grid>
+    </ContentView.Content>
+</ContentView>

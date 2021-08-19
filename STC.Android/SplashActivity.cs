@@ -1,22 +1,15 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
-using Android.Runtime;
-using Android.Support.V7.App;
 using Android.Util;
-using Android.Views;
-using Android.Widget;
+using AndroidX.AppCompat.App;
+using Plugin.FirebasePushNotification;
 
 namespace STC.Droid
 {
-    [Activity(Label = "STC", Icon = "@mipmap/icon", NoHistory =true, Theme = "@style/STCtheme.Splash", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
+    [Activity(Label = "STC", Icon = "@mipmap/ic_launcher", NoHistory =true, Theme = "@style/STCtheme.Splash", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize, ScreenOrientation = ScreenOrientation.Portrait)]
     public class SplashActivity : AppCompatActivity
     {
         static readonly string TAG = "X:" + typeof(SplashActivity).Name;
@@ -25,6 +18,7 @@ namespace STC.Droid
         {
             base.OnCreate(savedInstanceState, persistentState);
             Log.Debug(TAG, "SplashActivity.OnCreate");
+            FirebasePushNotificationManager.ProcessIntent(this, Intent);
         }
 
         // Launches the startup task
@@ -39,7 +33,7 @@ namespace STC.Droid
         async void SimulateStartup()
         {
             Log.Debug(TAG, "Performing some startup work that takes a bit of time.");
-            await Task.Delay(500); // Simulate a bit of startup work.
+            await Task.Delay(100); // Simulate a bit of startup work.
             Log.Debug(TAG, "Startup work is finished - starting MainActivity.");
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="STC.Views.AboutUsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:com="clr-namespace:STC.Common.CommonControlls;assembly=STC.Common"
+    xmlns:rs="clr-namespace:STC.Resources"
+    NavigationPage.HasNavigationBar="False">
+    <com:BasePageContentView Lang="{Binding Lang}">
+
+        <com:BasePageContentView.AppConntentView>
+            <StackLayout BackgroundColor="White">
+                <com:HeaderContentView
+                    Title="{x:Static rs:AppResources.AboutUs}"
+                    Margin="20,30,20,0"
+                    FontSize="16"
+                    Lang="{Binding Lang}"
+                    LeadingImageCommand="{Binding BackCommand}"
+                    TextColor="#242424" />
+                <ScrollView Margin="20,0,20,0" VerticalOptions="FillAndExpand">
+                    <StackLayout>
+                        <StackLayout Spacing="15">
+                            
+
+                            <Label
+                                TextType="Html"
+                                FontFamily="STCForwardRegular"
+                                FontSize="18"
+                                LineHeight="2"
+                                Text="{Binding Description}"
+                                TextColor="#717171"
+                                VerticalOptions="CenterAndExpand" />
+
+                        </StackLayout>
+
+                        <Label
+                            FontFamily="STCForwardRegular"
+                            FontSize="18"
+                            HorizontalOptions="CenterAndExpand"
+                            LineHeight="2"
+                            Text="{x:Static rs:AppResources.AllRightsReserved}"
+                            TextColor="#717171"
+                            VerticalOptions="EndAndExpand" />
+
+                    </StackLayout>
+
+
+                </ScrollView>
+            </StackLayout>
+        </com:BasePageContentView.AppConntentView>
+    </com:BasePageContentView>
+
+</ContentPage>

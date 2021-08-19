@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="STC.Views.NewInquiryPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cells="clr-namespace:STC.Cells"
+    xmlns:com="clr-namespace:STC.Common.CommonControlls;assembly=STC.Common"
+    xmlns:conv="clr-namespace:STC.Converters"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:rs="clr-namespace:STC.Resources"
+    xmlns:selector="clr-namespace:STC.TemplateSelector"
+    xmlns:sfChat="clr-namespace:Syncfusion.XForms.Chat;assembly=Syncfusion.SfChat.XForms"
+    xmlns:syncTheme="clr-namespace:Syncfusion.XForms.Themes;assembly=Syncfusion.Core.XForms"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    BackgroundColor="#53008f"
+    NavigationPage.HasNavigationBar="False">
+
+    <!--<ContentPage.Resources>
+        <ResourceDictionary>
+            <cells:DateTimeCell x:Key="dateCell" />
+            <cells:SenderCell x:Key="senderCell" />
+            <cells:ReceiverCell x:Key="receiverCell" />
+            <selector:InquiriesTemplateSelector
+                x:Key="chatSelector"
+                DateTimeemplate="{StaticResource dateCell}"
+                ReceiverTemplate="{StaticResource receiverCell}"
+                SenderTemplate="{StaticResource senderCell}" />
+            <conv:LengthConverter x:Key="converter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>-->
+
+    <ContentPage.Resources>
+        <syncTheme:SyncfusionThemeDictionary>
+            <syncTheme:SyncfusionThemeDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <x:String x:Key="SfChatTheme">CustomTheme</x:String>
+                    <Color x:Key="SfChatMessageInputViewBackgroundColor">Transparent</Color>
+                </ResourceDictionary>
+            </syncTheme:SyncfusionThemeDictionary.MergedDictionaries>
+        </syncTheme:SyncfusionThemeDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <com:BasePageContentView Lang="{Binding Lang}">
+            <com:BasePageContentView.AppConntentView>
+                <StackLayout Margin="0,30,0,0">
+                    <com:HeaderContentView
+                        Title="{Binding InquireyNumber}"
+                        Grid.Row="0"
+                        Margin="20,0,20,0"
+                        FontSize="16"
+                        Lang="{Binding Lang}"
+                        LeadingImage="BackArrow"
+                        LeadingImageCommand="{Binding BackCommand}"
+                        TextColor="#FFFFFF" />
+                    <Label
+                        Padding="20"
+                        FontFamily="STCForwardRegular"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        IsVisible="{Binding NoInquiries}"
+                        Text="{x:Static rs:AppResources.NoInquiries}"
+                        TextColor="#FFFFFF"
+                        VerticalOptions="FillAndExpand"
+                        VerticalTextAlignment="Center" />
+                    <sfChat:SfChat
+                        x:Name="sfChat"
+                        VerticalOptions="FillAndExpand"
+                        BackgroundColor="Transparent"
+                        IncomingMessageTimestampFormat="hh:mm tt"
+                        LoadMoreBehavior="{Binding LoadMoreBehavior}"
+                        LoadMoreCommand="{Binding LoadMoreCommand}"
+                        Messages="{Binding Messages}"
+                        OutgoingMessageTimestampFormat="hh:mm tt"
+                        SendMessage="SfChat_SendMessage"
+                        ShowIncomingMessageTimestamp="True"
+                        ShowOutgoingMessageAvatar="False"
+                        ShowOutgoingMessageTimestamp="True"
+                        TypingIndicatorViewHeight="0">
+                        <sfChat:SfChat.LoadMoreTemplate>
+                            <DataTemplate>
+                                <ActivityIndicator
+                                        Margin="0"
+                                        HorizontalOptions="Center"
+                                        IsRunning="True"
+                                        VerticalOptions="Center"
+                                        Color="{StaticResource LoadingSpinnerColor}" />
+                            </DataTemplate>
+                        </sfChat:SfChat.LoadMoreTemplate>
+                    </sfChat:SfChat>
+                </StackLayout>
+            </com:BasePageContentView.AppConntentView>
+
+        </com:BasePageContentView>
+    </ContentPage.Content>
+
+</ContentPage>

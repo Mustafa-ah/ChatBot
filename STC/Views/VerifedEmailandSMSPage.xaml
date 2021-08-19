@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="STC.Views.VerifedEmailandSMSPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:com="clr-namespace:STC.Common.CommonControlls;assembly=STC.Common"
+    xmlns:rs="clr-namespace:STC.Resources"
+    NavigationPage.HasNavigationBar="False">
+
+    <com:BasePageContentView Lang="{Binding Lang}">
+        <com:BasePageContentView.AppConntentView>
+            <StackLayout
+                Padding="30"
+                BackgroundColor="#05C48C"
+                Spacing="20">
+                <StackLayout Spacing="30">
+
+                    <Label
+                        Grid.Row="1"
+                        FontFamily="STCForwardBold"
+                        FontSize="24"
+                        HorizontalTextAlignment="Center"
+                        Text="{x:Static rs:AppResources.CongratulationsRegister}"
+                        TextColor="White"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                </StackLayout>
+
+                <Image HorizontalOptions="StartAndExpand" Source="Congratulations" />
+
+                <Frame BackgroundColor="#05C48C" HasShadow="False">
+
+                    <StackLayout Orientation="Horizontal">
+
+                        <StackLayout
+                            HorizontalOptions="Start"
+                            Orientation="Horizontal"
+                            Spacing="13">
+
+                            <Image Source="Emailicon.png" />
+                            <Label VerticalTextAlignment="Center"
+                                   VerticalOptions="Center"
+                                FontFamily="STCForwardRegular"
+                                FontSize="18"
+                                Text="{x:Static rs:AppResources.EmailTxt}"
+                                TextColor="#FFFFFF" />
+
+                        </StackLayout>
+
+                        <Image HorizontalOptions="EndAndExpand" Source="VerfiedIcon" />
+
+                    </StackLayout>
+                </Frame>
+                <Frame BackgroundColor="#05C48C" HasShadow="False">
+
+                    <StackLayout Orientation="Horizontal">
+
+                        <StackLayout
+                            HorizontalOptions="Start"
+                            Orientation="Horizontal"
+                            Spacing="13">
+
+                            <Image Source="Calls" />
+                            <Label VerticalTextAlignment="Center"
+                                   VerticalOptions="Center"
+                                FontFamily="STCForwardRegular"
+                                FontSize="18"
+                                Text="{x:Static rs:AppResources.SMSCode}"
+                                TextColor="#FFFFFF" />
+
+                        </StackLayout>
+
+                        <Image HorizontalOptions="EndAndExpand" Source="VerfiedIcon" />
+
+                    </StackLayout>
+                </Frame>
+                <Button
+                    Margin="0,0,0,10"
+                    BackgroundColor="White"
+                    Command="{Binding OpenCongratulationsRegisterCommand}"
+                    FontFamily="STCForwardMedium"
+                    FontSize="18"
+                    HeightRequest="60"
+                    Text="{x:Static rs:AppResources.GotoLogin}"
+                    TextColor="#05C48C"
+                    VerticalOptions="End" />
+
+            </StackLayout>
+        </com:BasePageContentView.AppConntentView>
+    </com:BasePageContentView>
+
+</ContentPage>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<extra:ToastView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:extra="clr-namespace:AiForms.Dialogs.Abstractions;assembly=AiForms.Dialogs.Abstractions"
+             x:Class="STC.Toasters.ToasterView"
+             HorizontalLayoutAlignment="Fill"
+             HorizontalOptions="FillAndExpand"
+             VerticalLayoutAlignment="Start"
+             VerticalOptions="StartAndExpand"
+             Duration="{Binding Duration}">
+             <Grid Margin="5">
+                  <Grid.Margin>
+       <OnPlatform x:TypeArguments="Thickness">
+       <On Platform="iOS" Value="5,50,5,5" />
+       <On Platform="Android, WinPhone, Windows" Value="5,5,5,5" />
+       </OnPlatform>
+  </Grid.Margin>
+                   <Frame CornerRadius="5"  
+                          Padding="0"
+                          HeightRequest="60"
+                       BackgroundColor="{Binding ToastBackgroundColor}"> 
+                       <Label Text="{Binding Message}"   
+                       VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                       Margin="20, 5, 20, 5" LineBreakMode="WordWrap"
+                       TextColor="White"
+                       FontFamily="STCForwardRegular"/>
+                  </Frame>
+            </Grid>
+</extra:ToastView>

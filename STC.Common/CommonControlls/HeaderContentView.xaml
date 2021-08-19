@@ -1,11 +1,44 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="STC.Common.CommonControlls.HeaderContentView"
-             x:Name="HeaderControll">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="STC.Common.CommonControlls.HeaderContentView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:conv="clr-namespace:STC.Common.Converters"
+    x:Name="HeaderControll">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <conv:RotationConverter x:Key="RotationConvert" />
+        </ResourceDictionary>
+    </ContentView.Resources>
     <ContentView.Content>
-        <StackLayout>
-            <Label Text="{Binding Title, Source={x:Reference HeaderControll}}"/>
+        <StackLayout Orientation="Horizontal">
+            <StackLayout
+                HeightRequest="40"
+                Orientation="Horizontal"
+                VerticalOptions="Center"
+                WidthRequest="40">
+                <Image
+                    InputTransparent="True"
+                    RotationY="{Binding Lang, Source={x:Reference HeaderControll}, Converter={StaticResource RotationConvert}}"
+                    Source="{Binding LeadingImage, Source={x:Reference HeaderControll}}"
+                    VerticalOptions="Center" />
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OnLeadingImageCommand, Source={x:Reference HeaderControll}}" />
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+            <Label
+                Margin="0,0,0,0"
+                FontFamily="STCForwardBold"
+                FontSize="{Binding FontSize, Source={x:Reference HeaderControll}}"
+                HorizontalOptions="FillAndExpand"
+                HorizontalTextAlignment="Center"
+                Text="{Binding Title, Source={x:Reference HeaderControll}}"
+                TextColor="{Binding TextColor, Source={x:Reference HeaderControll}}"
+                VerticalTextAlignment="Center" />
+            <StackLayout HeightRequest="40" WidthRequest="40">
+                <Image Source="{Binding TrailingImage, Source={x:Reference HeaderControll}}" />
+            </StackLayout>
         </StackLayout>
     </ContentView.Content>
 </ContentView>

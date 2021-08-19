@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="STC.Views.HomePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:CView="clr-namespace:STC.ContentViews"
+    xmlns:com="clr-namespace:STC.Common.CommonControlls;assembly=STC.Common"
+    xmlns:con="clr-namespace:STC.Common.Converters;assembly=STC.Common"
+    xmlns:en="clr-namespace:STC.Enums"
+    xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+    xmlns:rs="clr-namespace:STC.Resources"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <con:FlowDirectionConverter x:Key="FlowConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <AbsoluteLayout FlowDirection="{Binding Lang, Converter={StaticResource FlowConverter}}">
+            <!--  ...................................................Flyout Menu.................................  -->
+            <CView:FlyoutMenuContentView
+                x:Name="Flyout"
+                BackgroundColor="White"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                MenuToggled="HomeContentView_MenuToggled" />
+
+            <Frame
+                x:Name="MainContent"
+                Padding="0"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="White"
+                HasShadow="True">
+                <Grid
+                    Margin="{OnPlatform Android='0',
+                                        iOS='0,0,0,20'}"
+                    Padding="0"
+                    RowDefinitions="*,45">
+
+                    <Grid x:Name="MainScroll" BackgroundColor="{StaticResource HomeTabsBackgroundColor}">
+
+                        <!--  ...................................................home tab content.................................  -->
+                        <StackLayout x:Name="homeTab">
+                            <CView:HomeContentView
+                                HorizontalOptions="FillAndExpand"
+                                MenuToggled="HomeContentView_MenuToggled"
+                                VerticalOptions="FillAndExpand" />
+
+                        </StackLayout>
+                        <!--  ...................................................Inquires tab content.................................  -->
+                        <StackLayout x:Name="InquiresTab">
+                            <CView:InquiriesContentView
+                                FaqsClicked="InquiriesContentView_FaqsClicked"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand" />
+                        </StackLayout>
+                        <!--  ...................................................Request tab content.................................  -->
+                        <StackLayout x:Name="RequestTab">
+                            <CView:RequestsContentView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                        </StackLayout>
+                        <!--  ...................................................Faq tab content.................................  -->
+                        <StackLayout x:Name="FaqTab">
+                            <CView:FAQContentView
+                                BindingContext="{Binding FAQContentViewViewModel}"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand" />
+                        </StackLayout>
+                    </Grid>
+
+                    <!--  ...................................................Bottom tabs.................................  -->
+                    <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*">
+                        <!--  ...................................................home tab.................................  -->
+                        <StackLayout
+                            x:Name="BtnHome"
+                            Grid.Row="0"
+                            Grid.Column="0">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="BtnHome_Tapped" />
+                            </StackLayout.GestureRecognizers>
+
+                            <Image
+                                x:Name="ImageHome"
+                                Margin="0,5,0,5"
+                                HeightRequest="25"
+                                HorizontalOptions="Center"
+                                Source="ic_home"
+                                VerticalOptions="Center"
+                                WidthRequest="25">
+                                <Image.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding SelectedTab}"
+                                        TargetType="Image"
+                                        Value="{x:Static en:HomeTabs.Home}">
+                                        <Setter Property="Source" Value="ic_home_active" />
+                                    </DataTrigger>
+                                </Image.Triggers>
+                            </Image>
+                            <!--<Label Text="{x:Static rs:AppResources.Home}"
+                                       FontSize="16"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       TextColor="{StaticResource TabFontColor}"
+                                       FontFamily="STCForwardRegular"
+                                       HorizontalTextAlignment="Center">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label"
+                                                     Binding="{Binding SelectedTab}"
+                                                     Value="{x:Static en:HomeTabs.Home}">
+                                            <Setter Property="TextColor" Value="{StaticResource Key=TabActiveFontColor}"/>
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>-->
+
+                        </StackLayout>
+                        <!--  ...................................................inquiries tab.................................  -->
+                        <StackLayout
+                            x:Name="BtnInquiries"
+                            Grid.Row="0"
+                            Grid.Column="1">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="BtnInquiries_Tapped" />
+                            </StackLayout.GestureRecognizers>
+
+                            <Image
+                                x:Name="ImageInquiries"
+                                Margin="0,5,0,5"
+                                HeightRequest="25"
+                                HorizontalOptions="Center"
+                                Source="ic_inquiries"
+                                VerticalOptions="Center"
+                                WidthRequest="25">
+                                <Image.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding SelectedTab}"
+                                        TargetType="Image"
+                                        Value="{x:Static en:HomeTabs.Inquiries}">
+                                        <Setter Property="Source" Value="ic_inquiries_active" />
+                                    </DataTrigger>
+                                </Image.Triggers>
+                            </Image>
+                            <!--<Label Text="{x:Static rs:AppResources.Inquiries}"
+                                       FontSize="16"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       TextColor="{StaticResource TabFontColor}"
+                                       FontFamily="STCForwardRegular"
+                                       HorizontalTextAlignment="Center">
+                                     <Label.Triggers>
+                                        <DataTrigger TargetType="Label"
+                                                     Binding="{Binding SelectedTab}"
+                                                     Value="{x:Static en:HomeTabs.Inquiries}">
+                                            <Setter Property="TextColor" Value="{StaticResource Key=TabActiveFontColor}"/>
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>-->
+                        </StackLayout>
+                        <!--  ...................................................request tab.................................  -->
+                        <StackLayout
+                            x:Name="BtnRequests"
+                            Grid.Row="0"
+                            Grid.Column="2">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="BtnRequests_Tapped" />
+                            </StackLayout.GestureRecognizers>
+
+                            <Image
+                                x:Name="ImageRequests"
+                                Margin="0,5,0,5"
+                                HeightRequest="25"
+                                HorizontalOptions="Center"
+                                Source="ic_requests"
+                                VerticalOptions="Center"
+                                WidthRequest="25">
+                                <Image.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding SelectedTab}"
+                                        TargetType="Image"
+                                        Value="{x:Static en:HomeTabs.Requests}">
+                                        <Setter Property="Source" Value="ic_requests_active" />
+                                    </DataTrigger>
+                                </Image.Triggers>
+                            </Image>
+                            <!--<Label Text="{x:Static rs:AppResources.Requests}"
+                                       FontSize="16"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       TextColor="{StaticResource TabFontColor}"
+                                       FontFamily="STCForwardRegular"
+                                       HorizontalTextAlignment="Center">
+                                     <Label.Triggers>
+                                        <DataTrigger TargetType="Label"
+                                                     Binding="{Binding SelectedTab}"
+                                                     Value="{x:Static en:HomeTabs.Requests}">
+                                            <Setter Property="TextColor" Value="{StaticResource Key=TabActiveFontColor}"/>
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>-->
+                        </StackLayout>
+                        <!--  ...................................................faq tab.................................  -->
+                        <StackLayout
+                            x:Name="BtnFAQ"
+                            Grid.Row="0"
+                            Grid.Column="3">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="BtnFAQ_Tapped" />
+                            </StackLayout.GestureRecognizers>
+
+                            <Image
+                                x:Name="ImageFaq"
+                                Margin="0,5,0,5"
+                                HeightRequest="25"
+                                HorizontalOptions="Center"
+                                Source="ic_faq"
+                                VerticalOptions="Center"
+                                WidthRequest="25">
+                                <Image.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding SelectedTab}"
+                                        TargetType="Image"
+                                        Value="{x:Static en:HomeTabs.FAQ}">
+                                        <Setter Property="Source" Value="ic_faq_active" />
+                                    </DataTrigger>
+                                </Image.Triggers>
+                            </Image>
+                            <!--<Label Text="{x:Static rs:AppResources.Faq}"
+                                       FontSize="16"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       TextColor="{StaticResource TabFontColor}"
+                                       FontFamily="STCForwardRegular"
+                                       HorizontalTextAlignment="Center">
+                                     <Label.Triggers>
+                                        <DataTrigger TargetType="Label"
+                                                     Binding="{Binding SelectedTab}"
+                                                     Value="{x:Static en:HomeTabs.FAQ}">
+                                            <Setter Property="TextColor" Value="{StaticResource Key=TabActiveFontColor}"/>
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>-->
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+
+            </Frame>
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
