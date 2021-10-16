@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -33,6 +34,15 @@ namespace STC.ViewModels
         private string hotline { get; set; }
         private string mail { get; set; }
         private bool _isFBAccount;
+
+        private ObservableCollection<Chanel> _chanles;
+        public ObservableCollection<Chanel> Chanels
+        {
+            get { return _chanles; }
+            set { SetProperty(ref _chanles, value); }
+
+        }
+
         public bool IsFBAccount
         {
             get { return _isFBAccount; }
@@ -71,29 +81,15 @@ namespace STC.ViewModels
             _faqservice = faqservice;
             _accountService = accountService;
             _APPStaticDataService = APPStaticDataService;
-            FAQContentViewViewModel = new FAQPageViewModel(navigationService, _faqservice, settingsService);
-            //GetUserDetails();
-            GetContactUsData();
+            //FAQContentViewViewModel = new FAQPageViewModel(navigationService, _faqservice, settingsService);
 
-            ConnectSignalRNotificationsHub();
-            ConnectSignalRInquiryHub();
-            CreateSignalRTimer();
-            OpenToaster = false;
 
-            MessagingCenter.Subscribe<BaseViewModel, Notification>(this, "broadcastnotify", (sender, arg) =>
-            {
-                HasNewNotifications = Setting.HasNewNotifications = true;
-            });
-
-            MessagingCenter.Subscribe<App>(this, "OnSleep", (sender) =>
-            {
-                AppInBackground = true;
-            });
-
-            MessagingCenter.Subscribe<App>(this, "OnResume", (sender) =>
-            {
-                AppInBackground = false;
-            });
+            //Chanels = new ObservableCollection<Chanel>();
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    Chanels.Add(new Chanel());
+            //}
+           
         }
 
         private void UnsubscribeMessages()
@@ -254,7 +250,7 @@ namespace STC.ViewModels
         public ICommand OpenTwitter => new Command(() => OpenLink(twitterLink));
         public ICommand OpenYoutube => new Command(() => OpenLink(youtubeLink));
         public ICommand OpenInstagram => new Command(() => OpenLink(instgramLink));
-        public ICommand OpenNotificationsCommand => new Command(() => NavigationService.NavigateAsync(Routes.ViewsRoutes.NotificationRoute));
+       // public ICommand OpenNotificationsCommand => new Command(() => NavigationService.NavigateAsync(Routes.ViewsRoutes.NotificationRoute));
         public ICommand LogoutCommand => new Command(ExecuteLogoutCommand);
 
         private async void OpenLink(string Link)

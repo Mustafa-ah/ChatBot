@@ -42,17 +42,17 @@
                     <Grid x:Name="MainScroll" BackgroundColor="{StaticResource HomeTabsBackgroundColor}">
 
                         <!--  ...................................................home tab content.................................  -->
-                        <StackLayout x:Name="homeTab">
+                        <!--<StackLayout x:Name="homeTab">
                             <CView:HomeContentView
                                 HorizontalOptions="FillAndExpand"
                                 MenuToggled="HomeContentView_MenuToggled"
                                 VerticalOptions="FillAndExpand" />
 
-                        </StackLayout>
+                        </StackLayout>-->
                         <!--  ...................................................Inquires tab content.................................  -->
                         <StackLayout x:Name="InquiresTab">
-                            <CView:InquiriesContentView
-                                FaqsClicked="InquiriesContentView_FaqsClicked"
+                            <CView:HomeContentView
+                                MenuToggled="HomeContentView_MenuToggled"
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="FillAndExpand" />
                         </StackLayout>
@@ -61,18 +61,18 @@
                             <CView:RequestsContentView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
                         </StackLayout>
                         <!--  ...................................................Faq tab content.................................  -->
-                        <StackLayout x:Name="FaqTab">
+                        <!--<StackLayout x:Name="FaqTab">
                             <CView:FAQContentView
                                 BindingContext="{Binding FAQContentViewViewModel}"
                                 HorizontalOptions="FillAndExpand"
                                 VerticalOptions="FillAndExpand" />
-                        </StackLayout>
+                        </StackLayout>-->
                     </Grid>
 
                     <!--  ...................................................Bottom tabs.................................  -->
                     <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*">
                         <!--  ...................................................home tab.................................  -->
-                        <StackLayout
+                        <!--<StackLayout
                             x:Name="BtnHome"
                             Grid.Row="0"
                             Grid.Column="0">
@@ -97,7 +97,7 @@
                                     </DataTrigger>
                                 </Image.Triggers>
                             </Image>
-                            <!--<Label Text="{x:Static rs:AppResources.Home}"
+                            <Label Text="{x:Static rs:AppResources.Home}"
                                        FontSize="16"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center"
@@ -111,9 +111,9 @@
                                             <Setter Property="TextColor" Value="{StaticResource Key=TabActiveFontColor}"/>
                                         </DataTrigger>
                                     </Label.Triggers>
-                                </Label>-->
+                                </Label>
 
-                        </StackLayout>
+                        </StackLayout>-->
                         <!--  ...................................................inquiries tab.................................  -->
                         <StackLayout
                             x:Name="BtnInquiries"
@@ -140,7 +140,7 @@
                                     </DataTrigger>
                                 </Image.Triggers>
                             </Image>
-                            <!--<Label Text="{x:Static rs:AppResources.Inquiries}"
+                            <Label Text="{x:Static rs:AppResources.Inquiries}"
                                        FontSize="16"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center"
@@ -154,7 +154,7 @@
                                             <Setter Property="TextColor" Value="{StaticResource Key=TabActiveFontColor}"/>
                                         </DataTrigger>
                                     </Label.Triggers>
-                                </Label>-->
+                                </Label>
                         </StackLayout>
                         <!--  ...................................................request tab.................................  -->
                         <StackLayout
@@ -182,7 +182,7 @@
                                     </DataTrigger>
                                 </Image.Triggers>
                             </Image>
-                            <!--<Label Text="{x:Static rs:AppResources.Requests}"
+                            <Label Text="{x:Static rs:AppResources.Requests}"
                                        FontSize="16"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center"
@@ -196,10 +196,10 @@
                                             <Setter Property="TextColor" Value="{StaticResource Key=TabActiveFontColor}"/>
                                         </DataTrigger>
                                     </Label.Triggers>
-                                </Label>-->
+                                </Label>
                         </StackLayout>
                         <!--  ...................................................faq tab.................................  -->
-                        <StackLayout
+                        <!--<StackLayout
                             x:Name="BtnFAQ"
                             Grid.Row="0"
                             Grid.Column="3">
@@ -224,7 +224,7 @@
                                     </DataTrigger>
                                 </Image.Triggers>
                             </Image>
-                            <!--<Label Text="{x:Static rs:AppResources.Faq}"
+                            <Label Text="{x:Static rs:AppResources.Faq}"
                                        FontSize="16"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center"
@@ -238,8 +238,8 @@
                                             <Setter Property="TextColor" Value="{StaticResource Key=TabActiveFontColor}"/>
                                         </DataTrigger>
                                     </Label.Triggers>
-                                </Label>-->
-                        </StackLayout>
+                                </Label>
+                        </StackLayout>-->
                     </Grid>
                 </Grid>
 

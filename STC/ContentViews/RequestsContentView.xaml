@@ -20,7 +20,7 @@
                     TextColor="White" />
                 <Image Grid.Row="2" Source="RequestsTab.png" />
 
-                <Button
+                <!--<Button
                     Grid.Row="3"
                     BackgroundColor="White"
                     BorderColor="White"
@@ -41,7 +41,7 @@
                     FontSize="16"
                     HeightRequest="60"
                     Text="{x:Static rs:AppResources.SeeYourRequests}"
-                    TextColor="#FF375E" />
+                    TextColor="#FF375E" />-->
             </Grid>
     </ContentView.Content>
 </ContentView>

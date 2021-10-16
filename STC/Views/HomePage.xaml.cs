@@ -36,7 +36,7 @@ namespace STC.Views
             MainContent.SizeChanged += OnMainContentSizeChanged;
 
 
-            BtnHome_Tapped(this, null);
+            BtnInquiries_Tapped(this, null);
         }
 
         protected override void OnAppearing()
@@ -114,8 +114,8 @@ namespace STC.Views
             SetDefaultScal();
             ViewModel.SelectedTab = HomeTabs.Home;
             HideAllTabs();
-            homeTab.IsVisible = true;
-            ImageHome.ScaleTo(_tabsScale, speed);
+          //  homeTab.IsVisible = true;
+            //ImageHome.ScaleTo(_tabsScale, speed);
         }
         void BtnInquiries_Tapped(Object sender, EventArgs e)
         {
@@ -138,23 +138,23 @@ namespace STC.Views
             SetDefaultScal();
             ViewModel.SelectedTab = HomeTabs.FAQ;
             HideAllTabs();
-            FaqTab.IsVisible = true;
-            ImageFaq.ScaleTo(_tabsScale, speed);
+            //FaqTab.IsVisible = true;
+           // ImageFaq.ScaleTo(_tabsScale, speed);
         }
         private uint speed = 100;
         private void SetDefaultScal()
         {
-            ImageHome.ScaleTo(1, speed);
+          //  ImageHome.ScaleTo(1, speed);
             ImageInquiries.ScaleTo(1, speed);
             ImageRequests.ScaleTo(1, speed);
-            ImageFaq.ScaleTo(1, speed);
+            //ImageFaq.ScaleTo(1, speed);
         }
 
         private void HideAllTabs()
         {
-            homeTab.IsVisible = false;
+            //homeTab.IsVisible = false;
             RequestTab.IsVisible = false;
-            FaqTab.IsVisible = false;
+           // FaqTab.IsVisible = false;
             InquiresTab.IsVisible = false;
         }
 

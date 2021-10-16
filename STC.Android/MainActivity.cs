@@ -18,7 +18,7 @@ using Android.Views.InputMethods;
 
 namespace STC.Droid
 {
-    [Activity(Label = "STC", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize, ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "ChatBot", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize, ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected async override void OnCreate(Bundle savedInstanceState)
@@ -36,7 +36,11 @@ namespace STC.Droid
             // AndroidBug5497WorkaroundForXamarinAndroid.assistActivity(this);
 
             DisplayCrashReport();
-            global::Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
+            //global::Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
+            //global::Xamarin.Forms.Forms.SetFlags("Brush_Experimental");
+
+            Xamarin.Forms.Forms.SetFlags(new string[] { "Brush_Experimental", "FastRenderers_Experimental" });
+
             AiForms.Dialogs.Dialogs.Init(this);
             Rg.Plugins.Popup.Popup.Init(this);
             UserDialogs.Init(this);

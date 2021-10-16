@@ -50,7 +50,7 @@ namespace STC
 
         protected override void OnStart()
         {
-            RegisterPushNtificationEvents();
+           // RegisterPushNtificationEvents();
         }
 
         protected override void OnSleep()
@@ -79,7 +79,7 @@ namespace STC
 
             if (string.IsNullOrEmpty(setting.AuthAccessToken))
             {
-                NavigationService.NavigateAsync($"{ViewsRoutes.LoginRoute}");
+                NavigationService.NavigateAsync($"{ViewsRoutes.HomeRoute}");
             }
             else
             {

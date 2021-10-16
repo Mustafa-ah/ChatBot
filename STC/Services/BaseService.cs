@@ -8,7 +8,7 @@ namespace STC.Services
     {
 
         public const string BaseHubUrl = "http://15.185.62.3:50120/";
-        private readonly string baseAddress = "http://15.185.62.3:50120/api";
+        private readonly string baseAddress = "https://www.khoolasa.chat/api";
 
         //test commit
         public static string BaseUrl { get; set; }

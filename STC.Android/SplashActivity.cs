@@ -9,7 +9,7 @@ using Plugin.FirebasePushNotification;
 
 namespace STC.Droid
 {
-    [Activity(Label = "STC", Icon = "@mipmap/ic_launcher", NoHistory =true, Theme = "@style/STCtheme.Splash", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize, ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "ChatBot", Icon = "@mipmap/ic_launcher", NoHistory =true, Theme = "@style/STCtheme.Splash", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize, ScreenOrientation = ScreenOrientation.Portrait)]
     public class SplashActivity : AppCompatActivity
     {
         static readonly string TAG = "X:" + typeof(SplashActivity).Name;
