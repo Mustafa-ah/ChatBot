@@ -18,7 +18,7 @@
                     AbsoluteLayout.LayoutFlags="All">
                     <StackLayout x:Name="MainStack" Spacing="30">
 
-                        <Image BackgroundColor="Yellow"
+                        <!--<Image
                             x:Name="LogoImg"
                             Margin="0,30,0,35"
                             Aspect="AspectFit"
@@ -34,23 +34,23 @@
                                 </DataTrigger>
 
                             </Image.Triggers>
-                        </Image>
+                        </Image>-->
 
-                        <StackLayout x:Name="WelcomeStack" Margin="0,0,0,10" BackgroundColor="Yellow">
+                        <StackLayout x:Name="WelcomeStack" Margin="0,0,0,10" >
                             <Label
                                 FontFamily="STCForwardMedium"
                                 FontSize="28"
                                 Text="{x:Static rs:AppResources.Welcome}"
                                 TextColor="#171717" />
-                            <Label
+                            <!--<Label
                                 FontFamily="STCForwardRegular"
                                 FontSize="18"
                                 Text="{x:Static rs:AppResources.LoginStc}"
-                                TextColor="#454545" />
+                                TextColor="#454545" />-->
                         </StackLayout>
 
 
-                        <com:EntryContentView BackgroundColor="Yellow"
+                        <com:EntryContentView 
                             EntryFocused="EntryContentView_Focused"
                             EntryUnFocused="ContentEntry_Unfocused"
                             KeyboardType="Email"
@@ -59,7 +59,7 @@
                             PlaceholderColor="#9f9f9f"
                             TextChangedCommand="{Binding UserNameChangedCommand}"
                             Value="{Binding EmailOrMobile}" />
-                        <com:EntryContentView BackgroundColor="Yellow"
+                        <com:EntryContentView 
                             EntryFocused="EntryPasswordContentView_Focused"
                             EntryUnFocused="PasswordEntry_Unfocused"
                             IsPassword="True"
@@ -91,7 +91,7 @@
                             </Button.Triggers>
                         </Button>
 
-                        <Label BackgroundColor="Yellow"
+                        <Label 
                             Margin="0,10,0,0"
                             FontFamily="STCForwardRegular"
                             FontSize="16"

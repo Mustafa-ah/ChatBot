@@ -42,7 +42,7 @@ namespace STC.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            (this.BindingContext as HomePageViewModel).GetUserDetails();
+            (this.BindingContext as HomePageViewModel).GetUserChanels();
         }
 
         private double width = 0;

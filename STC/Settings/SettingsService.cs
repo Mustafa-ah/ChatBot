@@ -24,6 +24,7 @@ namespace STC.Settings
         private const string IdEndpointBase = "IdEndpointBase";
         private const string GeneralInquiryMeassageKey = "GeneralInquiryMeassageKey";
         private const string RequestInquiryMeassageKey = "RequestInquiryMeassageKey";
+        private const string IsLoggedinKey = "IsLoggedinKey";
 
 
 
@@ -143,6 +144,11 @@ namespace STC.Settings
             set => AddOrUpdateValue(RequestInquiryMeassageKey, SerializeObject(value));
         }
 
+        public bool IsLoggedin
+        {
+            get => GetValueOrDefault<bool>(IsLoggedinKey, false);
+            set => AddOrUpdateValue(IsLoggedinKey, value);
+        }
         #endregion
 
         #region Public Methods

@@ -84,12 +84,12 @@ namespace STC.ViewModels
             //FAQContentViewViewModel = new FAQPageViewModel(navigationService, _faqservice, settingsService);
 
 
-            //Chanels = new ObservableCollection<Chanel>();
+            Chanels = new ObservableCollection<Chanel>();
             //for (int i = 0; i < 5; i++)
             //{
             //    Chanels.Add(new Chanel());
             //}
-           
+
         }
 
         private void UnsubscribeMessages()
@@ -143,23 +143,25 @@ namespace STC.ViewModels
                     break;
             }
         }
-        public async void GetUserDetails()
+        public async void GetUserChanels()
         {
             try
             {
-                if (!IsConncted()|| string.IsNullOrEmpty(Setting.AuthAccessToken))
-                {
-                    return;
-                }
+                //if (!IsConncted()|| string.IsNullOrEmpty(Setting.AuthAccessToken))
+                //{
+                //    return;
+                //}
                 ShowLoading();
 
-                var respons = await _accountService.GetAccountDetails(Setting.AuthAccessToken);
+                var respons = await _accountService.GetUserChanels(Setting.AuthAccessToken);
 
                 Name = "";
-                if(!string.IsNullOrEmpty( respons.Data.fullName))
+                if(respons.Success)
                 {
-                    string firstName = respons.Data.fullName.Split(' ')[0];
-                    Name = firstName;
+                    foreach (var item in respons.Channels)
+                    {
+                        Chanels.Add(item);
+                    }
                 }
 
 

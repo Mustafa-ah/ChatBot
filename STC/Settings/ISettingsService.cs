@@ -12,6 +12,7 @@ namespace STC.Settings
         string UserId { get; set; }
         string AuthIdToken { get; set; }
         string GeneralInquiryId { get; set; }
+        bool IsLoggedin { get; set; }
 
         int AppLanguage { get; set; }
 

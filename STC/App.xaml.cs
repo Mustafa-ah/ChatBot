@@ -77,13 +77,13 @@ namespace STC
             //set app language
             SetAppLang(setting);
 
-            if (string.IsNullOrEmpty(setting.AuthAccessToken))
+            if (setting.IsLoggedin)
             {
                 NavigationService.NavigateAsync($"{ViewsRoutes.HomeRoute}");
             }
             else
             {
-                NavigationService.NavigateAsync($"{ViewsRoutes.HomeRoute}");
+                NavigationService.NavigateAsync($"{ViewsRoutes.LoginRoute}");
             }
             System.Diagnostics.Debug.WriteLine($" CrossFirebasePushNotification TOKEN : {setting.PushNotificationDeviceToken}");
             // NavigationService.NavigateAsync(ViewsRoutes.HomeRoute);

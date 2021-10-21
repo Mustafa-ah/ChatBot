@@ -51,14 +51,12 @@ namespace STC.Models
     {
         public string Id { get; set; }
         public string email { get; set; }
-        public string mobileNumber { get; set; }
+        public string phone { get; set; }
         public string Image { get; set; }
         public string fullName { get; set; }
         public bool isEmail { get; set; }
-
-        public string userPassword { get; set; }
         public string userConfirmPassword { get; set; }//for registeruserTypeId roleName
-        public string Gender { get; set; }
+        public string gender { get; set; }
         public string Nationality { get; set; }
         public string Token { get; set; }
         public string RefreshToken { get; set; }
@@ -66,6 +64,22 @@ namespace STC.Models
         public int UserTypeId { get; set; }
 
         public string GeneralInquiryId { get; set; }
+
+
+        public string password { get; set; }
+        public string avatar { get; set; }
+
+
+    }
+
+
+    public class LoginDTO
+    {
+        public string Id { get; set; }
+        public string Token { get; set; }
+        public string Message { get; set; }
+        public double ExpireAt { get; set; }
+        public bool Success { get; set; }
     }
 
     public class Requests

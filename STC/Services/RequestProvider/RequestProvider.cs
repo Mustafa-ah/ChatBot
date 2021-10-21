@@ -157,6 +157,9 @@ namespace STC.Services.RequestProvider
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+
+            httpClient.DefaultRequestHeaders.Add("apikey", BaseService.Apikey);
+
             if (!string.IsNullOrEmpty(token))
             {
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -187,7 +190,7 @@ namespace STC.Services.RequestProvider
             if (string.IsNullOrWhiteSpace(clientId) || string.IsNullOrWhiteSpace(clientSecret))
                 return;
 
-            httpClient.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue(clientId, clientSecret);
+           // httpClient.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue(clientId, clientSecret);
         }
 
         private async Task HandleResponse(HttpResponseMessage response)

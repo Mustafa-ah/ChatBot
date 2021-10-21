@@ -15,11 +15,11 @@ namespace STC.Services.Account
         {
 
         }
-        public async Task<Response<UserDTO>> Login(string emailOrPhone, string passwordMobile, bool ismobile)
+        public async Task<LoginDTO> Login(string emailOrPhone, string passwordMobile, bool ismobile)
         {
-            string url = $"{BaseUrl}Account/Login";
+            string url = $"{BaseUrl}/users/login";
 
-            return await _requestProvider.PostDataAsync<UserDTO>(url, new { emailAddressOrPhoneNumber = emailOrPhone, password = passwordMobile  , isMobile = ismobile }, null);
+            return await _requestProvider.PostAsync<LoginDTO>(url, new { info = emailOrPhone, password = passwordMobile }, null);
         }
 
         public async Task<Response<UserDTO>> Register(UserDTO user)
@@ -182,6 +182,12 @@ namespace STC.Services.Account
             string url = $"{BaseUrl}Account/ResendVerifyEmailCode";
 
             return await _requestProvider.PostDataAsync<VerifyOTP>(url, new { id = userID }, token);
+        }
+
+        public async Task<ChanelResponse> GetUserChanels(string token)
+        {
+            string url = $"{BaseUrl}/users/channels";
+            return await _requestProvider.GetAsync<ChanelResponse>(url,token);
         }
     }
 }

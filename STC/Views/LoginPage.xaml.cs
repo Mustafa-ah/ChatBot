@@ -49,7 +49,7 @@ namespace STC.Views
 
         private void ShrinkView()
         {
-            LogoImg.Margin = new Thickness(0, 20, 0, 20);
+            //LogoImg.Margin = new Thickness(0, 20, 0, 20);
             WelcomeStack.Margin = new Thickness(0, 0, 0, 10);
             MainStack.Spacing = 15;
             //RootScroll.ScrollToAsync(0, 1000, false);
@@ -57,7 +57,7 @@ namespace STC.Views
 
         private void ExpandView()
         {
-            LogoImg.Margin = new Thickness(0,20,0,35);
+           // LogoImg.Margin = new Thickness(0,20,0,35);
             WelcomeStack.Margin = new Thickness(0,0,0,10);
             MainStack.Spacing = 30;
             //RootScroll.ScrollToAsync(0, 0, false);

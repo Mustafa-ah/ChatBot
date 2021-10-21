@@ -27,6 +27,11 @@ namespace STC.ViewModels
 
             SelectedType = 1;
             Setting.VerifyType = 1;
+
+#if DEBUG
+            _emailOrMobile.Value = "sam@test.com";
+            _password.Value = "sam12345";
+#endif
         }
 
         #region Props
@@ -119,64 +124,19 @@ namespace STC.ViewModels
                 {
                     ShowLoading();
                     var response = await _accountService.Login(_emailOrMobile.Value, _password.Value,  true);
-                    if (!string.IsNullOrEmpty(response.StatusCode.ToString()) && response.StatusCode==200)
+                    if (response.Success)
                     {
-                         Setting.UserId = response.Data.Id;
-                        Setting.GeneralInquiryId = response.Data.GeneralInquiryId;
-                        var mobileNumber = response.Data.mobileNumber;
-                        var parameters = new NavigationParameters
-                        {
-                            {"Phone" ,  mobileNumber }
+                        Setting.IsLoggedin = true;
+                        Setting.AuthAccessToken = response.Token;
 
-                        };
-                       
-                        await NavigationService.NavigateAsync(Routes.ViewsRoutes.LoginOTPtRoute,parameters);
+                        await NavigationService.NavigateAsync(Routes.ViewsRoutes.HomeRoute);
 
                     }
                     else
                     {
 
+                        ShowErrorToast(response.Message);
 
-
-
-                        if (response.StatusCode == 205 || response.StatusCode == 208 || response.StatusCode == 207)
-                        {
-
-                            ShowErrorToast( response.Message);
-                            string Email = "";
-                            string Name = "";
-                            string Mobile = "";
-                            if (response != null)
-                            {
-                                Email = response.Data.email;
-                                Mobile = response.Data.mobileNumber;
-                                Setting.UserId = response.Data.Id;
-                            }
-
-                            if (response.StatusCode == 205)
-                            {
-                                var parameters = new NavigationParameters { { "Email", Email }, { "PMobile", Mobile }, { "Name", Name }, { "NotUpdateProfile", true } };
-
-                                await NavigationService.NavigateAsync(Routes.ViewsRoutes.VerifyEmailMobileProfilePage, parameters);
-                            }
-                            else if (response.StatusCode == 208)
-                            {
-                                var parameters = new NavigationParameters { { "PEmail", Email }, { "Mobile", Mobile }, { "Name", Name }, { "NotUpdateProfile", true } };
-
-                                await NavigationService.NavigateAsync(Routes.ViewsRoutes.VerifyEmailMobileProfilePage, parameters);
-                            }
-                            else if (response.StatusCode == 207)
-                            {
-                                var parameters = new NavigationParameters { { Constants.ParameterKey.ViewRoute, Routes.ViewsRoutes.VerifiedEmailandSms }, { "Email", Email }, { "Phone", Mobile } };
-                                await NavigationService.NavigateAsync(Routes.ViewsRoutes.VerifyEmailRoute, parameters);
-                            }
-                        }
-                        else
-                        {
-                       
-                            ShowErrorToast(response.Message);
-                        }
-                           
                     }
                 }
                 catch (Exception ex)

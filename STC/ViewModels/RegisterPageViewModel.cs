@@ -240,10 +240,10 @@ namespace STC.ViewModels
             UserDTO user = new UserDTO()
             {
                 email = _email.Value,
-                userPassword = _password.Value,
+                password = _password.Value,
                 userConfirmPassword = _confirmPassword.Value,
                 fullName = _fullName.Value,
-                mobileNumber = _phone.Value,
+                phone = _phone.Value,
                
             };
             if (valid)
@@ -258,7 +258,7 @@ namespace STC.ViewModels
                         if (!string.IsNullOrEmpty(response.Data.Id))
                         {
                             Setting.UserId = response.Data.Id;
-                            var parameters = new NavigationParameters { { Constants.ParameterKey.ViewRoute, Routes.ViewsRoutes.VerifiedEmailandSms }, { "Email",response.Data.email}, { "Phone", response.Data.mobileNumber } };
+                            var parameters = new NavigationParameters { { Constants.ParameterKey.ViewRoute, Routes.ViewsRoutes.VerifiedEmailandSms }, { "Email",response.Data.email}, { "Phone", response.Data.phone } };
                             await NavigationService.NavigateAsync(Routes.ViewsRoutes.VerifyEmailRoute, parameters);
                         }
                         else
@@ -285,19 +285,19 @@ namespace STC.ViewModels
                             if (response.StatusCode == 205)
                             {
 
-                                var parameters = new NavigationParameters { { "Email",response.Data.email  }, { "PMobile", response.Data.mobileNumber}, { "Name", FullName.Value }, { "NotUpdateProfile", true } };
+                                var parameters = new NavigationParameters { { "Email",response.Data.email  }, { "PMobile", response.Data.phone}, { "Name", FullName.Value }, { "NotUpdateProfile", true } };
 
                                 await NavigationService.NavigateAsync(Routes.ViewsRoutes.VerifyEmailMobileProfilePage, parameters);
                             }
                             else if (response.StatusCode == 208)
                             {
-                                var parameters = new NavigationParameters { { "PEmail", response.Data.email }, { "Mobile", response.Data.mobileNumber }, { "Name", FullName.Value }, { "NotUpdateProfile", true } };
+                                var parameters = new NavigationParameters { { "PEmail", response.Data.email }, { "Mobile", response.Data.phone }, { "Name", FullName.Value }, { "NotUpdateProfile", true } };
 
                                 await NavigationService.NavigateAsync(Routes.ViewsRoutes.VerifyEmailMobileProfilePage, parameters);
                             }
                             else if (response.StatusCode == 207)
                             {
-                                var parameters = new NavigationParameters { { Constants.ParameterKey.ViewRoute, Routes.ViewsRoutes.VerifiedEmailandSms }, { "Email", response.Data.email }, { "Phone", response.Data.mobileNumber } };
+                                var parameters = new NavigationParameters { { Constants.ParameterKey.ViewRoute, Routes.ViewsRoutes.VerifiedEmailandSms }, { "Email", response.Data.email }, { "Phone", response.Data.phone } };
                                 await NavigationService.NavigateAsync(Routes.ViewsRoutes.VerifyEmailRoute, parameters);
                             }
                             //if (response.StatusCode == 200)

@@ -11,11 +11,6 @@ namespace STC.ContentViews
         public HomeContentView()
         {
             InitializeComponent();
-
-            if (DateTime.Now.Hour >= 0 && DateTime.Now.Hour < 12)
-                Greetings.Text = AppResources.GoodMorning;
-            else
-                Greetings.Text = AppResources.GoodEvening;
         }
 
         void Button_Clicked(System.Object sender, System.EventArgs e)

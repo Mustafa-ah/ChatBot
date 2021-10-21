@@ -8,7 +8,8 @@ namespace STC.Services.Account
 {
     public interface IAccountService
     {
-        Task<Response<UserDTO>> Login(string emailOrPhone, string password ,  bool ismobile);
+        Task<LoginDTO> Login(string emailOrPhone, string password ,  bool ismobile);
+        Task<ChanelResponse> GetUserChanels(string token);
         Task<Response<UserDTO>> Register(UserDTO user);
         Task<Response<UserDTO>> EditRegister(UserDTO user);
         Task<Response<UserToken>> VerifyOTP(string userId, string otp);
